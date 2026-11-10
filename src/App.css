@@ -1,0 +1,23 @@
+.main-content {
+  min-height: 100vh;
+}
+
+.footerMenu-app{
+  display: none;
+}
+
+.footer-app {
+  display: block;
+}
+
+
+@media only screen and (max-width: 700px) {
+  .footer-app {
+    display: none;
+  }
+
+  .footerMenu-app{
+    display: block;
+    margin-top: 100px;
+  }
+}

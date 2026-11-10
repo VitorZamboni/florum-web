@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap');
+
+:root {
+  --cherry-blossom: #EDAFB8;
+  --powder-petal: #F7E1D7;
+  --dust-gray: #DEDBD2;
+  --ash-gray: #B0C4B1;
+  --iron-gray: #4A5759;
+  --white: #fff;
+  --black: #000;
+
+  --font-primaria: "Mulish", sans-serif;
+  --font-logo: "Arima", system-ui;
+  
+  font-family: var(--font-primaria);
+  background: var(--dust-gray);
+  color: var(--iron-gray);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 15px;
+  height: auto;
+  width: 90%;
+  margin-top: 2rem;
+}
+
+.main-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.button {
+  background-color: var(--ash-gray);
+  border: none;
+  border-radius: 15px;
+  width: 60px;
+  height: 45px;
+}
+
+.button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.title {
+  text-align: left;
+  font-size: 32px;
+}
+
+.product-description p {
+  margin-top: 8px;
+  text-align: justify;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 700px) {
+  .container {
+    min-width: 90vh;
+    margin-left: 10%;
+    margin-bottom: 20%;
+  }
+
+  input{
+        font-size: 22px;
+    }
+}
