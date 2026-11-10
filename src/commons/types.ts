@@ -4,3 +4,9 @@ export interface IResponse<T> {
     message?: string;
     data?: T
 }
+
+export interface Validator {
+    message: string;
+    uid: string;
+    validate: (value: string) => Promise<boolean> | boolean;
+}

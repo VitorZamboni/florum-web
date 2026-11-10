@@ -1,0 +1,54 @@
+.login-container {
+    width: 50%;
+    height: 100%;
+}
+
+.login-container .forgot-password {
+    display: block;
+    text-align: right;
+}
+
+.login-container .span-link {
+    color: var(--cherry-blossom);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-container .span-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-container .login-button {
+    margin-top: 32px;
+    width: 100%;
+    color: var(--iron-gray);
+    font-weight: 700;
+}
+
+.login-container .not-account {
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+@media only screen and (max-width: 700px) {
+    .login-container {
+        width: 90vh;
+    }
+
+    .login-container .span-link {
+        font-size: 24px;
+    }
+
+    .login-container .not-account {
+        margin-top: 16px;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .button {
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,70 @@
+.input-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0 0 0;
+}
+
+.input-container label {
+    text-align: left;
+    margin-bottom: 2px;
+}
+
+.input-container input {
+    padding: 8px 28px;
+    border: none;
+    background-color: var(--dust-gray);
+    color: var(--iron-gray);
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-container input:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px var(--ash-gray);
+}
+
+.input-container input:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px var(--ash-gray);
+}
+
+.input-container svg {
+    position: absolute;
+    left: 8px;
+    top: 68%;
+    transform: translateY(-50%);
+}
+
+.input-container .password-icon {
+    left: auto;
+    right: 8px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.error-message {
+    color: #f00;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+@media only screen and (max-width: 700px) {
+    .input-container {
+        font-size: 26px;
+    }
+
+    .input-container input {
+        font-size: 28px;
+        padding: 16px 42px;
+    }
+
+    .error-message {
+        font-size: 22px;
+    }
+
+
+}
