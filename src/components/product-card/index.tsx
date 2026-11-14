@@ -1,17 +1,21 @@
 import { FaStar } from 'react-icons/fa';
-import '../styles/productCard.css'
-import '../styles/style.css'
+import './style.css'
+import '@/components/layout/style.css'
 import { MdAddShoppingCart } from "react-icons/md";
-import { useContext } from 'react';
+import type { SimpleProductResponse } from '@/commons/product';
 
-export default function ProductCard({product}){    
-    const { addProductCart } = useContext(CartContext);
-    const isPromotion = product.classes.some(c => c === 'Promoções');
+interface ProductCardProps{
+    product : SimpleProductResponse;
+}
+
+export default function ProductCard({product} : ProductCardProps){    
+    // const { addProductCart } = useContext(CartContext);
+    const isPromotion = product.discount > 0;
 
     return(
         <div className="product" onClick={() => window.location.href = `/product/${product.id}`}>
             <div className="image">
-                <img src={product.images[0].url} alt={product.name} />
+                <img src={product.mainImageUrl} alt={product.name} />
                 {
                     isPromotion && 
                     (
@@ -25,7 +29,7 @@ export default function ProductCard({product}){
             </div>
             <div className='container-name'>
                 <span className='name'>{product.name}</span>
-                <span className='rating'>{product.rating} <FaStar className='rating-star'/></span>
+                <span className='rating'>{product.evaluation} <FaStar className='rating-star'/></span>
             </div>
             <div className='container-info'>
                 <div className="info">  
@@ -46,10 +50,12 @@ export default function ProductCard({product}){
                     </div>
                 </div>
                 <div className='cart-button'>
-                    <button className='button product-button' onClick={(e) => {
-                        e.stopPropagation();
-                        addProductCart(product);
-                    }}>
+                    <button className='button product-button'
+                    //  onClick={(e) => {
+                    //     e.stopPropagation();
+                    //     addProductCart(product);
+                    // }}
+                    >
                         <MdAddShoppingCart className='addButton'/>
                     </button>
                 </div>
