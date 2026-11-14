@@ -3,8 +3,9 @@ import type { IResponse } from "@/commons/types";
 import api from "@/lib/axios";
 
 const path = 'products';
+const pathPage = path + '/page';
 const getProductsPage = async (page: number, size: number = 10, filters: ProductFilter): Promise<IResponse<ProductPageResponse>>=> {
-    return await api.get<ProductPageResponse>(path, {page, size, ...filters});
+    return await api.get<ProductPageResponse>(pathPage, {page, size, ...filters});
 } 
 
 const getProductById = async (id: number): Promise<IResponse<ProductDetailResponse>> => {

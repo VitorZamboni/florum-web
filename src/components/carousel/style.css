@@ -1,0 +1,46 @@
+.body {
+    display: flex;
+    align-items: center;
+}
+
+.card .carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: 80vw;
+}
+
+.card .carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.buttons {
+    width: 05%;
+    text-align: center;
+}
+
+.buttons button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--iron-gray);
+    font-size: 30px;
+    padding-top: 6px;
+}
+
+.buttons button:hover {
+    background-color: #f0eeee;
+    border-radius: 20%;
+}
+
+@media only screen and (max-width: 700px) {
+    .card {
+        max-width: 100%;
+
+    }
+
+    .body {
+        width: 90%;
+    }
+
+}
