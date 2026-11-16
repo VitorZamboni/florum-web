@@ -34,7 +34,7 @@ export interface ProductDetailResponse {
     categories: CategoryResponse[];
 }
 
-interface ImageResponse {
+export interface ImageResponse {
     url: string;
     sortIndex: number;
 }
