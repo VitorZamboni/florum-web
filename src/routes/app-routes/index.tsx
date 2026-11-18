@@ -6,6 +6,7 @@ import { LoginPage } from "@/pages/login";
 import { OrdersPage } from "@/pages/orders";
 import { RequireAuth } from "@/components/require-auth";
 import { Product } from "@/pages/product";
+import Products from "@/pages/products";
 
 export function AppRoutes() {
   return (
@@ -16,6 +17,7 @@ export function AppRoutes() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/products" element={<Products/>} />
         <Route path="/product/:id" element={<Product/>} />
         {/* protected routes */}
         <Route element={<RequireAuth />}>
