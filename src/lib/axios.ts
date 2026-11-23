@@ -47,6 +47,46 @@ const post = async <T>(url: string, body: object): Promise<IResponse<T>> => {
     return response;
 } 
 
+const put = async <T>(url: string, body: object): Promise<IResponse<T>> => {
+    let response = {} as IResponse<T>;  
+    try {
+        const res = await http.put(url, body);
+        response = {
+            status: res.status,
+            success: true,
+            data: res.data
+        }
+    } catch (err: any) {
+        response = {
+            status: err.response.status,
+            success: true,
+            message: err.response.data.message,
+            data: err.response.data
+        }
+    }
+    return response;
+} 
+
+const del = async <T>(url: string): Promise<IResponse<T>> => {
+    let response = {} as IResponse<T>;  
+    try {
+        const res = await http.delete(url);
+        response = {
+            status: res.status,
+            success: true,
+            data: res.data
+        }
+    } catch (err: any) {
+        response = {
+            status: err.response.status,
+            success: true,
+            message: err.response.data.message,
+            data: err.response.data
+        }
+    }
+    return response;
+} 
+
 const setToken = (token: string) => [
     http.defaults.headers.common['Authorization'] = `Bearer ${token}`
 ]
@@ -54,6 +94,8 @@ const setToken = (token: string) => [
 const api = {
     get,
     post,
+    put,
+    del,
     setToken
 };
 
