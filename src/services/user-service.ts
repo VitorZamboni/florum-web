@@ -12,7 +12,7 @@ const login = async (data: LoginRequest): Promise<IResponse<LoginResponse>> => {
     return api.post(`/login`, data);
 }
 
-const signup = async (data: SignupRequest): Promise<IResponse<undefined>> => {
+const signup = async (data: SignupRequest): Promise<IResponse<void>> => {
     return api.post(path, data);
 }
 const UserService = {

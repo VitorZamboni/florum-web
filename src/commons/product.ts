@@ -38,3 +38,8 @@ interface ImageResponse {
     url: string;
     sortIndex: number;
 }
+
+export interface ProductQuantity {
+    productId: number;
+    quantity: number;
+}
