@@ -9,6 +9,7 @@ import { BsBoxSeam } from 'react-icons/bs';
 function Header() {
     const { user, menuOpen, handleUserIconClick, handleLogout, handleOrder } = useHeader();
 
+    const destaque = Math.floor(Math.random() * (3)) + 1;
     return (
             <header className="navbar">
                 <div className="header">
@@ -52,9 +53,9 @@ function Header() {
 
                 </div>
                 <div className="tabs">
-                    <Link to={"/products/Todos os Produtos"}><h3>Todos os produtos</h3></Link>
-                    <Link to={"/products/Promoções"}><h3>Promoções</h3></Link>
-                    <Link to={"/products/Destaques"}><h3>Destaques</h3></Link>
+                    <Link to={"/products"}><h3>Todos os produtos</h3></Link>
+                    <Link to={"/products?promotion=true"}><h3>Promoções</h3></Link>
+                    <Link to={`/products?categoryId=${destaque}`}><h3>Destaques</h3></Link>
                 </div>
             </header>
     );

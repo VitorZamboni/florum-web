@@ -1,0 +1,151 @@
+.product-container {
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-image {
+    width: 50%;
+}
+
+.product-image img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.product-image .selected-image {
+    border: 4px solid var(--cherry-blossom);
+    border-radius: 15px;
+}
+
+.product-info {
+    height: 50vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    padding-left: 1rem;
+    align-self: stretch;
+}
+
+.product-info .product-buttons button {
+    width: 100%;
+    color: var(--iron-grey);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.product-info .product-buttons button svg {
+    margin-right: 4px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    padding-left: 12px;
+}
+
+
+.product-info .product-buttons .buy-now {
+    background-color: var(--cherry-blossom);
+}
+
+.large-text {
+    font-size: 2rem;
+    color: #000;
+    font-weight: 600;
+}
+
+.medium-text {
+    font-size: 1.5rem;
+    color: #000;
+    font-weight: 600;
+}
+
+.small-text {
+    font-size: 1rem;
+    color: #000;
+    font-weight: 600;
+}
+
+.line-2 {
+    margin-left: 1.5rem;
+}
+
+.line-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.stock-text svg {
+    margin-right: 4px;
+}
+
+.images img {
+    width: 20%;
+    height: 10vh;
+}
+
+.images {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.rating {
+    font-size: 18px;
+}
+
+.rating-star {
+    color: rgba(238, 206, 65, 0.993);
+}
+
+.product-details {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 700px) {
+    .product-container {
+        display: inline;
+        justify-items: center;
+    }
+
+    .product-image {
+        width: 90%;
+    }
+
+    .product-info {
+        width: 100%;
+        justify-content: space-evenly;
+        padding-left: 2rem;
+    }
+
+    .product-info .product-buttons button {
+        font-size: 30px;
+    }
+
+    .large-text {
+        font-size: 3rem;
+    }
+
+    .medium-text, .description-text {
+        font-size: 2rem;
+    }
+
+    .small-text, .stock-text, .span-text {
+        font-size: 1.5rem;
+    }
+
+
+    .rating {
+        font-size: 24px;
+    }
+
+    
+}
