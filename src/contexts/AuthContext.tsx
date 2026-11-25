@@ -5,7 +5,7 @@ import type { LoginResponse, UserResponse } from "@/commons/user";
 import api from "@/lib/axios";
 import { createContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   authenticated: boolean;
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [authenticatedUser, setAuthenticatedUser] =
     useState<UserResponse>();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setAuthenticatedUser(JSON.parse(storedUser));
       setAuthenticated(true);
       api.setToken(storedToken);
-      navigate("/");
+      // navigate("/");
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -45,7 +45,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       localStorage.setItem(
         "token",
-        JSON.stringify(authenticationResponse.token)
+        // JSON.stringify(authenticationResponse.token)
+        authenticationResponse.token
       );
       localStorage.setItem("user", JSON.stringify(authenticationResponse.user));
       api.setToken(authenticationResponse.token);
