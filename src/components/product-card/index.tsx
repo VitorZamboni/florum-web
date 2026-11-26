@@ -3,13 +3,15 @@ import './style.css'
 import '@/components/layout/style.css'
 import { MdAddShoppingCart } from "react-icons/md";
 import type { SimpleProductResponse } from '@/commons/product';
+import { CartContext } from '@/contexts/CartContext';
+import { useContext } from 'react';
 
 interface ProductCardProps{
     product : SimpleProductResponse;
 }
 
 export default function ProductCard({product} : ProductCardProps){    
-    // const { addProductCart } = useContext(CartContext);
+    const { addProductCart } = useContext(CartContext);
     const isPromotion = product.discount > 0;
 
     return(
@@ -51,10 +53,10 @@ export default function ProductCard({product} : ProductCardProps){
                 </div>
                 <div className='cart-button'>
                     <button className='button product-button'
-                    //  onClick={(e) => {
-                    //     e.stopPropagation();
-                    //     addProductCart(product);
-                    // }}
+                     onClick={(e) => {
+                        e.stopPropagation();
+                        addProductCart(product);
+                    }}
                     >
                         <MdAddShoppingCart className='addButton'/>
                     </button>

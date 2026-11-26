@@ -5,9 +5,12 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { useHeader } from './useHeader';
 import { BsBoxSeam } from 'react-icons/bs';
+import { useContext } from 'react';
+import { CartContext } from '@/contexts/CartContext';
 
 function Header() {
     const { user, menuOpen, handleUserIconClick, handleLogout, handleOrder } = useHeader();
+    const {productsCartCount} = useContext(CartContext);
 
     const destaque = Math.floor(Math.random() * (3)) + 1;
     return (
@@ -47,7 +50,7 @@ function Header() {
                         </div>
                         <Link to="/cart" className='cart-link'>
                             <MdOutlineShoppingCart className='icons' />
-                            {/* {productsCartCount > 0 && <span className="cart-count">{productsCartCount}</span>} */}
+                            {productsCartCount > 0 && <span className="cart-count">{productsCartCount}</span>}
                         </Link>
                     </div>
 

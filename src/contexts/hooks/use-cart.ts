@@ -21,7 +21,7 @@ export function useCart() {
     const navigate = useNavigate();
 
     const getCartFromStorage = () => {
-        return JSON.parse(localStorage.getItem('cart') || '{}') as Cart;
+        return JSON.parse(localStorage.getItem('cart') || '{"cartItems":[]}') as Cart;
     }
 
     const setCartToStorage = (cart: Cart) => {
