@@ -11,3 +11,8 @@ export const emailValidator: Validator = {
     uid: "email",
     validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 }
+export const cepValidator: Validator = {
+    message: " deve ter 8 dígitos",
+    uid: "cep",
+    validate: (value) => /^\d{8}$/.test(value)
+}

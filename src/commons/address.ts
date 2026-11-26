@@ -1,4 +1,4 @@
-export interface AddressCepResponse{
+export interface AddressCepResponse {
     cep: string;
     street: string;
     district: string;
@@ -7,14 +7,20 @@ export interface AddressCepResponse{
     country: string;
 }
 
-export interface Address{
+export interface Address {
     id: number;
     cep: string;
     street: string;
-    number: number;
+    number: string;
     district: string;
     city: string;
     state: string;
     country: string;
-    complement: string;
+    complement?: string;
+}
+
+export type CreateAddressRequest = Omit<Address, 'id'>;
+
+export interface ShippingResponse {
+    shipping: number;
 }

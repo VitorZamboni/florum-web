@@ -5,7 +5,7 @@ import { useContext } from "react";
 import './style.css'
 import '@/components/layout/style.css'
 import { useCartPage } from "./use-cart-page";
-
+import { hasFreeShipping } from "@/utils/price";
 
 export function Cart() {
     const { cart, productsCartCount, productTotal, discount, total } = useContext(CartContext);
@@ -32,13 +32,6 @@ export function Cart() {
                 </div>
 
                 <div className='infos '>
-                    <div className="discount  card">
-                        <h4>Código de desconto:</h4>
-                        <div className='discountBar'>
-                            {/* <InputBar icon={GoPlus} /> */}
-                        </div>
-                    </div>
-
                     <div className="details card">
                         <div>
                             <h4 className='details-name'>Produtos ({productsCartCount})</h4>
@@ -48,7 +41,7 @@ export function Cart() {
                         </div>
                         <div>
                             <h4 className='details-value'>R$ {productTotal.toFixed(2)}</h4>
-                            <h4 className='details-value'>Calculado na finalização</h4>
+                            <h4 className='details-value'>{hasFreeShipping(total) ? 'Grátis' : 'Calculado na finalização'}</h4>
                             <h4 className='details-value'>R$ {discount.toFixed(2)}</h4>
                             <h4 className='details-price'>R$ {total.toFixed(2)}</h4>
                         </div>
@@ -61,12 +54,6 @@ export function Cart() {
                             <button className='button continue' onClick={handleClearCart}>Esvaziar carrinho</button>
                         )}
                     </div>
-
-                    {/* <ModalCheckout
-                        isOpen={isCheckoutOpen}
-                        onClose={() => setIsCheckoutOpen(false)}
-                        onFinalize={handleFinalizeOrder}
-                    /> */}
                 </div>
             </div>
 

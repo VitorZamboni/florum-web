@@ -3,7 +3,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import { BsEyeSlash } from "react-icons/bs";
 import { useInput, type InputOptions } from "./use-input";
 
-export function Input({icon, placeholder, type, name, label, validators = [], changeValue}: InputOptions) {    
+export function Input({icon, placeholder, type, name, label, value, validators = [], changeValue}: InputOptions) {
 
     const {visible, toggleVisibility, error, validate} = useInput();
     return (
@@ -15,6 +15,7 @@ export function Input({icon, placeholder, type, name, label, validators = [], ch
                     name={name} 
                     id={name} 
                     placeholder={placeholder}
+                    value={value}
                     onChange={(e) => changeValue && changeValue(e.target.value)}
                     onBlur={(e) => validate(e.target.value, label, validators)}
                 />

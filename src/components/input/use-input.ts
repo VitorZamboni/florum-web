@@ -2,8 +2,9 @@ import type { Validator } from "@/commons/types";
 import { useState, type ReactNode } from "react";
 
 export interface InputOptions {
-    icon: ReactNode;
+    icon?: ReactNode;
     placeholder?: string;
+    value?: string;
     type: string;
     name: string;
     label: string;

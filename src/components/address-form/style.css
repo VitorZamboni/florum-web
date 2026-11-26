@@ -1,0 +1,48 @@
+.address-form {
+    margin-top: 12px;
+    padding-top: 4px;
+    border-top: 1px solid var(--dust-gray);
+}
+
+.address-form .address-form-row {
+    display: flex;
+    gap: 12px;
+}
+
+.address-form .address-form-field {
+    flex: 1;
+}
+
+.address-form .address-form-field-large {
+    flex: 3;
+}
+
+.address-form .address-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.address-form .address-form-actions .button {
+    width: auto;
+    padding: 0 20px;
+    font-weight: 600;
+    color: var(--iron-gray);
+}
+
+.address-form .address-form-save {
+    background-color: var(--cherry-blossom);
+}
+
+.address-form .address-form-save:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media only screen and (max-width: 700px) {
+    .address-form .address-form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}

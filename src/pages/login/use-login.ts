@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContext } from "@/contexts/ToastContext";
 import { emailValidator, requiredValidator } from "@/utils/validators";
 import UserService from "@/services/user-service";
@@ -11,6 +11,7 @@ export function useLogin() {
     const [password, setPassword] = useState("");
     const { showToast } = useContext(ToastContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const onSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -29,7 +30,7 @@ export function useLogin() {
             if (response.status === 200 && response.data) {
                 await handleLogin(response.data); 
                 showToast("Login realizado com sucesso!", "success");
-                navigate("/");
+                navigate(location.state?.from?.pathname ?? "/");
             } else {
                 showToast("Erro ao fazer login. Verifique suas credenciais", "error");
             }

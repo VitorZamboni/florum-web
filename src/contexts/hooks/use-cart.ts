@@ -137,6 +137,7 @@ export function useCart() {
         handleUpdateQuantity,
         handleDeleteProduct,
         clearCart,
+        reloadCart: loadProductsCart,
         productTotal,
         total,
         discount,
