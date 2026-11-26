@@ -28,7 +28,7 @@
     flex: 1;
 }
 
-.infos {
+.order-card .infos {
     justify-content: space-between;
     display: flex;
     width: 85%;

@@ -1,4 +1,4 @@
-import type { CartCount, Cart, CreateCart, UpdateCartItem } from "@/commons/cart";
+import type { Cart, CreateCart, UpdateCartItem } from "@/commons/cart";
 import type { IResponse } from "@/commons/types";
 import api from "@/lib/axios";
 
@@ -6,10 +6,6 @@ const path = 'carts'
 
 const createCart = async (data: CreateCart): Promise<IResponse<void>> => {
     return api.post(path, data);
-}
-
-const count = async (): Promise<IResponse<CartCount>> => {
-    return api.get<CartCount>(`${path}/count`);
 }
 
 const get = async (): Promise<IResponse<Cart>> => {
@@ -26,7 +22,6 @@ const deleteItem = async (itemId: number): Promise<IResponse<void>> => {
 
 const CartService = {
     createCart,
-    count,
     get,
     updateItem,
     deleteItem

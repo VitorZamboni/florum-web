@@ -7,6 +7,13 @@ const http = axios.create({
     baseURL: 'http://localhost:8080/',
 });
 
+const toErrorResponse = <T>(err: any): IResponse<T> => ({
+    status: err.response?.status,
+    success: false,
+    message: err.response?.data?.message ?? 'Não foi possível conectar ao servidor',
+    data: err.response?.data
+});
+
 const get = async <T>(url: string, params?: unknown): Promise<IResponse<T>> => {
     let response = {} as IResponse<T>;  
     try {
@@ -17,12 +24,7 @@ const get = async <T>(url: string, params?: unknown): Promise<IResponse<T>> => {
             data: res.data
         }
     } catch (err: any) {
-        response = {
-            status: err.response.status,
-            success: true,
-            message: err.response.data.message,
-            data: err.response.data
-        }
+        response = toErrorResponse<T>(err);
     }
     return response;
 } 
@@ -37,12 +39,7 @@ const post = async <T>(url: string, body: object): Promise<IResponse<T>> => {
             data: res.data
         }
     } catch (err: any) {
-        response = {
-            status: err.response.status,
-            success: true,
-            message: err.response.data.message,
-            data: err.response.data
-        }
+        response = toErrorResponse<T>(err);
     }
     return response;
 } 
@@ -57,12 +54,7 @@ const put = async <T>(url: string, body: object): Promise<IResponse<T>> => {
             data: res.data
         }
     } catch (err: any) {
-        response = {
-            status: err.response.status,
-            success: true,
-            message: err.response.data.message,
-            data: err.response.data
-        }
+        response = toErrorResponse<T>(err);
     }
     return response;
 } 
@@ -77,12 +69,7 @@ const del = async <T>(url: string): Promise<IResponse<T>> => {
             data: res.data
         }
     } catch (err: any) {
-        response = {
-            status: err.response.status,
-            success: true,
-            message: err.response.data.message,
-            data: err.response.data
-        }
+        response = toErrorResponse<T>(err);
     }
     return response;
 } 

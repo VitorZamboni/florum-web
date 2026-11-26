@@ -5,10 +5,10 @@ import { useProduct } from "@/contexts/hooks/use-product";
 import { FaRegCheckCircle, FaStar } from "react-icons/fa";
 import Carousel from "@/components/carousel"
 import { useCarousel } from "@/contexts/hooks/use-carousel";
+import { getFinalPrice } from '@/utils/price';
 
 export function Product() {
-    const { product, selectedImage, handleImageClick } = useProduct();
-    // const { addProductCart } = useContext(CartContext);
+    const { product, selectedImage, handleImageClick, handleAddToCart } = useProduct();
     const isPromotion:boolean = Number(product?.discount) > 0;
     const products = useCarousel({ promotion: false, categoryIds: [] });
 
@@ -25,6 +25,7 @@ export function Product() {
                                     src={i.url}
                                     alt={product?.name}
                                     onClick={() => handleImageClick(i)}
+                                    key={i.url}
                                 />
                             ))
                         }
@@ -41,12 +42,12 @@ export function Product() {
                         </div>
                         <div className='product-price'>
                             <div >
-                                <span className='large-text'>R$ {product?.price.toFixed(2)}</span>
+                                <span className='large-text'>R$ {product && getFinalPrice(product).toFixed(2)}</span>
                                 {
                                     isPromotion &&
                                     (
                                         <>
-                                            <span className='small-text old-price'>R$ {((Number(product?.price)) / (1 - Number(product?.discount))).toFixed(2)}</span>
+                                            <span className='small-text old-price'>R$ {product?.price.toFixed(2)}</span>
                                             <span className='small-text'>({Math.round(Number(product?.discount) * 100)}% off)</span>
                                         </>
                                     )
@@ -56,7 +57,7 @@ export function Product() {
                                 <span className='span-text'> à vista ou em </span>
                                 <span className='medium-text'> 12x </span>
                                 <span className='span-text'> de </span>
-                                <span className='medium-text'>R$ {((Number(product?.price) * 1.5) / 12).toFixed(2)}</span>
+                                <span className='medium-text'>R$ {product && ((getFinalPrice(product) * 1.5) / 12).toFixed(2)}</span>
                             </div>
                         </div>
                         <div className='product-shipping'>
@@ -78,7 +79,7 @@ export function Product() {
                         </span>
                         <div className='product-buttons'>
                             <button className='button' 
-                            // onClick={() => addProductCart(product)}
+                            onClick={handleAddToCart}
                                 >
                                 <MdAddShoppingCart />Adicionar ao carrinho
                             </button>

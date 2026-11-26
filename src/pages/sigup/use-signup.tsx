@@ -52,7 +52,6 @@ export function useSignup() {
                 const loginRes = await UserService.login({email, password});
                 if (loginRes.status === 200 && loginRes.data) {
                     await handleLogin(loginRes.data); 
-                    // await resolveCart();
                     showToast("Conta criada com sucesso!", "success");
                     navigate("/");
                 } else {

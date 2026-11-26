@@ -2,180 +2,133 @@
 import { useContext, useEffect, useState } from "react";
 import { ToastContext } from "@/contexts/ToastContext";
 import { AuthContext } from "@/contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
 import CartService from "@/services/cart-service";
-import type { Cart } from "@/commons/cart";
+import type { Cart, CartItem } from "@/commons/cart";
 import type { SimpleProductResponse } from "@/commons/product";
+import { getFinalPrice } from "@/utils/price";
+
+const CART_STORAGE_KEY = 'cart';
+const emptyCart = (): Cart => ({ cartItems: [] });
 
 export function useCart() {
-    const [cart, setCart] = useState({} as Cart);
-    const [productsCartCount, setProductsCartCount] = useState(0);
+    const [cart, setCart] = useState<Cart>({ cartItems: [] }); 
     const { showToast } = useContext(ToastContext);
     const { user } = useContext(AuthContext);
-    const [productTotal, setProductTotal] = useState(0);
-    const [shipping, setShipping] = useState(0);
-    const [discount, setDiscount] = useState(0);
-    const [total, setTotal] = useState(0);
-    const [address, setAddress] = useState(null);
 
-    const navigate = useNavigate();
+    const productsCartCount = cart.cartItems.reduce((t, i) => t + i.quantity, 0);
+    const productTotal = cart.cartItems.reduce((t, i) => t + i.product.price * i.quantity, 0);
+    const discount = cart.cartItems.reduce((t, i) => t + (i.product.price - getFinalPrice(i.product)) * i.quantity, 0);
+    const total = productTotal - discount;
 
-    const getCartFromStorage = () => {
-        return JSON.parse(localStorage.getItem('cart') || '{"cartItems":[]}') as Cart;
+    const getCartFromStorage = (): Cart => {
+        const stored = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || 'null');
+        return stored?.cartItems ? stored : emptyCart();
     }
 
     const setCartToStorage = (cart: Cart) => {
-        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
     }
 
-    const getProductsCart = async () => {
-        if (user) {
-            return (await CartService.get()).data;
-        } else {
-            getCartFromStorage();
-        }
+    const getCartFromServer = async (): Promise<Cart> => {
+        const response = await CartService.get();
+        return response.data?.cartItems ? response.data : emptyCart(); // body vazio = sem carrinho
     }
 
-    const getCartCount = async () => {
-        if (user) {
-            return (await CartService.count()).data?.count ?? 0;
-        } else {
-            const cart = getCartFromStorage();
-            if (!cart) return 0
-            return cart.cartItems.reduce((total, item) => total + item.quantity, 0);
-        }
+    const getProductsCart = async (): Promise<Cart> => {
+        return user ? getCartFromServer() : getCartFromStorage();
     }
 
     const loadProductsCart = async () => {
-        const _cart = await getProductsCart();
-        if (_cart) {
-            const  _productTotal = _cart.cartItems.reduce((t, i) => {
-            if (i.product.discount) {
-                return t + ((i.product.price / (1 - i.product.discount)) * i.quantity)
-            } 
-            return t + (i.product.price * i.quantity)
-        }, 0);
-        const _discount = _cart.cartItems.reduce((t, i) => {
-            if (i.product.discount) {
-                return t + (((i.product.price / (1 - i.product.discount)) * i.quantity) - (i.product.price * i.quantity))
-            }
-            return t + 0
-        }, 0)
-        const _shipping = _productTotal - _discount > 199.99 ? 0 : 23.96;
-        const _total = (_productTotal - _discount) + _shipping;
-        setDiscount(_discount);
-        setProductTotal(_productTotal);
-        setShipping(_shipping);
-        setTotal(_total);
-        setCart(_cart);
-        setProductsCartCount((await CartService.count()).data?.count ?? 0);
+        setCart(await getProductsCart());
+    }
+
+    const mergeStorageCart = async () => {
+        const storedCart = getCartFromStorage();
+        if (storedCart.cartItems.length === 0) return;
+
+        localStorage.removeItem(CART_STORAGE_KEY);
+        const items = storedCart.cartItems.map(i => ({ productId: i.product.id, quantity: i.quantity }));
+        const response = await CartService.createCart({ items });
+        if (!response.success) {
+            setCartToStorage(storedCart);
         }
-        
-        setAddress(JSON.parse(localStorage.getItem('address') || '{}'));
     }
 
     useEffect(() => {
-        loadProductsCart();
-    }, []);
+        const syncCart = async () => {
+            if (user) await mergeStorageCart();
+            await loadProductsCart();
+        };
+        syncCart();
+    }, [user]);
 
     const addProductCart = async (product: SimpleProductResponse) => {
         if (user) {
-            await CartService.createCart({items:[{productId: product.id, quantity: 1}]});
+            const response = await CartService.createCart({ items: [{ productId: product.id, quantity: 1 }] });
+            if (!response.success) {
+                showToast("Não foi possível adicionar o produto ao carrinho", "error");
+                return;
+            }
         } else {
             const cart = getCartFromStorage();
-            const existingProduct = cart.cartItems.find(item => item.product.id === product.id);
-            if (existingProduct) {
-                existingProduct.quantity += 1;
+            const existingItem = cart.cartItems.find(i => i.product.id === product.id);
+            if (existingItem) {
+                existingItem.quantity += 1;
             } else {
-                cart.cartItems.push({ product: product, quantity: 1, id: 0 });
+                cart.cartItems.push({ id: product.id, product, quantity: 1 }); // visitante: usa o id do produto
             }
             setCartToStorage(cart);
         }
-        setProductsCartCount(await getCartCount());
         showToast("Produto adicionado ao carrinho!", "success");
-        loadProductsCart();
+        await loadProductsCart();
     }
 
-    const handleUpdateQuantity = async (productId: number, quantity: number, itemId: number) => {
+    const handleUpdateQuantity = async (item: CartItem, quantity: number) => {
         if (user) {
-            await CartService.updateItem(itemId, {quantity});
+            const response = await CartService.updateItem(item.id, { quantity });
+            if (!response.success) {
+                showToast("Não foi possível atualizar a quantidade", "error");
+                return;
+            }
         } else {
             const cart = getCartFromStorage();
-            const item = cart.cartItems.find(i => i.product.id === productId);
-            if (item) {
-                item.quantity = quantity;
-                localStorage.setItem('cart', JSON.stringify(cart));
+            const storedItem = cart.cartItems.find(i => i.product.id === item.product.id);
+            if (storedItem) {
+                storedItem.quantity = quantity;
+                setCartToStorage(cart);
             }
         }
-        setProductsCartCount(await getCartCount());
-        loadProductsCart();
+        await loadProductsCart();
     }
 
-    const handleDeleteProduct = async (productId: number, itemId: number) => {
+    const handleDeleteProduct = async (item: CartItem) => {
         if (user) {
-            CartService.deleteItem(itemId);
+            const response = await CartService.deleteItem(item.id);
+            if (!response.success) {
+                showToast("Não foi possível remover o produto", "error");
+                return;
+            }
         } else {
             const cart = getCartFromStorage();
-            cart.cartItems = cart.cartItems.filter(i => i.product.id !== productId);
-            localStorage.setItem('cart', JSON.stringify(cart));
+            cart.cartItems = cart.cartItems.filter(i => i.product.id !== item.product.id);
+            setCartToStorage(cart);
         }
-        setProductsCartCount(await getCartCount());
-        loadProductsCart();
+        await loadProductsCart();
     }
 
-    const resolveCart = async () => {
-        const storedCart = getCartFromStorage();
-        if (storedCart.cartItems) {
-            const items = storedCart.cartItems.map(i => ({productId: i.product.id, quantity: i.quantity }));
-            await CartService.createCart({items});
+    const clearCart = async () => {
+        if (user) {
+            const responses = await Promise.all(
+                cart.cartItems.map(item => CartService.deleteItem(item.id))
+            );
+            if (responses.some(r => !r.success)) {
+                showToast("Não foi possível esvaziar o carrinho", "error");
+            }
+        } else {
+            localStorage.removeItem(CART_STORAGE_KEY);   // aqui ainda estava 'cart' fixo
         }
-        setProductsCartCount(await getCartCount());
-        loadProductsCart();
+        await loadProductsCart();
     }
-
-    const clearCart = () => {
-        localStorage.removeItem('cart');
-        setCart({});
-        setProductsCartCount(0);
-        setProductTotal(0);
-        setShipping(0);
-        setDiscount(0);
-        setTotal(0);
-    }
-
-    // const handleAddressChange = (value) => {
-    //     localStorage.setItem('address', JSON.stringify(value));
-    //     setAddress(value);
-    // }
-
-    const handleKeepBuying = () => {
-        navigate('/products/Todos%20os%20Produtos')
-    }
-
-    const handleCompletePurchase = () => {
-        
-        return true;
-    }
-
-    // const handleFinalizeOrder = async (paymentData) => {
-    //     try {
-    //         const order = await createOrder({
-    //             address,
-    //             paymentType: paymentData.paymentType,
-    //             total,
-    //             discount,
-    //             shipping,
-    //             items: productsCart,
-    //         });
-    //         if (!order) return false;
-    //         await clearCartItems();
-    //         clearCart();
-    //         return true;
-    //     } catch (error) {
-    //         console.error('Erro ao finalizar pedido', error);
-    //         return false;
-    //     }
-    // }
 
     return {
         cart,
@@ -183,16 +136,9 @@ export function useCart() {
         addProductCart,
         handleUpdateQuantity,
         handleDeleteProduct,
-        resolveCart,
         clearCart,
-        handleKeepBuying,
-        handleCompletePurchase,
-        // handleFinalizeOrder,
-        // handleAddressChange,
         productTotal,
         total,
         discount,
-        shipping,
-        address
     };
 }

@@ -28,7 +28,6 @@ export function useLogin() {
             const response = await UserService.login({ email, password });
             if (response.status === 200 && response.data) {
                 await handleLogin(response.data); 
-                // await resolveCart();
                 showToast("Login realizado com sucesso!", "success");
                 navigate("/");
             } else {

@@ -5,27 +5,30 @@ import { FiTrash2 } from "react-icons/fi";
 import type { CartItem } from '@/commons/cart';
 import { CartContext } from '@/contexts/CartContext';
 import { useProductCart } from './use-product-cart';
+import { getFinalPrice } from '@/utils/price';
+import { useNavigate } from 'react-router-dom';
 
-
-export default function ProductCart({ id, product, quantity }: CartItem) {
+export default function ProductCart(item: CartItem) {
+    const { product, quantity } = item;
     const { handleUpdateQuantity, handleDeleteProduct } = useContext(CartContext);
     const { handleDeleteClick, showPopoverDelete } = useProductCart();
+    const navigate = useNavigate(); 
 
     return (
         <div className="product-cart" >
-            <div onClick={() => window.location.href = `/product/${product.id}`}>
+            <div onClick={() => navigate(`/product/${product.id}`)}>
                 <img src={product.mainImageUrl} alt={product.name} />
             </div>
 
             <div className='container-info'>
                 <div className="name">
-                    <span onClick={() => window.location.href = `/product/${product.id}`}>{product.name}</span>
+                    <span onClick={() => navigate(`/product/${product.id}`)}>{product.name}</span>
                 </div>
 
                 <div className="quantity">
                     <div className="text-decoration cart-quantity">
                         <label>Quantidade:  </label>
-                        <select name="optionFilter" id="optionFilter" className='text-decoration' value={quantity} onChange={(e) => handleUpdateQuantity(product.id, Number(e.target.value), id)}>
+                        <select name="optionFilter" id="optionFilter" className='text-decoration' value={quantity} onChange={(e) => handleUpdateQuantity(item, Number(e.target.value))}>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -46,7 +49,7 @@ export default function ProductCart({ id, product, quantity }: CartItem) {
                                 <div className="delete-confirm">
                                     <p className="delete-confirm-text">Remover produto?</p>
                                     <div className="delete-confirm-actions">
-                                        <button className="delete-confirm-btn confirm" onClick={() => handleDeleteProduct(product.id, id)}>Sim</button>
+                                        <button className="delete-confirm-btn confirm" onClick={() => handleDeleteProduct(item)}>Sim</button>
                                         <button className="delete-confirm-btn cancel" onClick={() => handleDeleteClick()}>Cancelar</button>
                                     </div>
                                 </div>
@@ -57,7 +60,7 @@ export default function ProductCart({ id, product, quantity }: CartItem) {
 
                 <div className="infos">
                     <span>Valor: </span>
-                    <span className='price'>R$ {product.price}</span>
+                    <span className='price'>R$ {getFinalPrice(product).toFixed(2)}</span>
                 </div>
             </div>
         </div>
