@@ -5,13 +5,13 @@ import type { LoginResponse, UserResponse } from "@/commons/user";
 import api from "@/lib/axios";
 import { createContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
-// import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   authenticated: boolean;
   user?: UserResponse;
   handleLogin: (authenticationResponse: LoginResponse) => Promise<any>;
   handleLogout: () => void;
+  loading: boolean;
 }
 
 interface AuthProviderProps {
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [authenticatedUser, setAuthenticatedUser] =
     useState<UserResponse>();
-  // const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -34,8 +34,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setAuthenticatedUser(JSON.parse(storedUser));
       setAuthenticated(true);
       api.setToken(storedToken);
-      // navigate("/");
     }
+
+    setLoading(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -70,7 +71,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ authenticated, user: authenticatedUser, handleLogin, handleLogout }}
+      value={{ loading, authenticated, user: authenticatedUser, handleLogin, handleLogout }}
     >
       {children}
     </AuthContext.Provider>
