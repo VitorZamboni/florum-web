@@ -7,6 +7,7 @@ import { Orders } from "@/pages/orders";
 import { RequireAuth } from "@/components/require-auth";
 import { Product } from "@/pages/product";
 import Products from "@/pages/products";
+import { Cart } from "@/pages/cart";
 
 export function AppRoutes() {
   return (
@@ -19,6 +20,7 @@ export function AppRoutes() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/products" element={<Products />} />
         <Route path="/product/:id" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
         {/* protected routes */}
         <Route element={<RequireAuth />}>
           <Route path="/orders" element={<Orders />} />

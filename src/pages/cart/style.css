@@ -1,0 +1,147 @@
+.card {
+    background-color: white;
+    border-radius: 15px;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h4 {
+    font-size: 24px;
+    text-align: left;
+}
+
+.cart {
+    width: 90%;
+    display: flex;
+    margin-top: 3%;
+}
+
+.cart .cart-products {
+    width: 60%;
+}
+
+.cart .infos {
+    width: 40%;
+    margin-left: 20px;
+}
+
+.cart .infos .address {
+    margin-bottom: 20px;
+}
+
+.cart .infos .address button {
+    display: block;
+    justify-self: end;
+    color: var(--cherry-blossom);
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cart .infos .discount h4 {
+    margin-bottom: 10px;
+}
+
+.cart .infos .discount .discountBar {
+    margin-left: 100px;
+}
+
+.cart .infos .details {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    padding: 10px;
+}
+
+.cart .infos .details .details-name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.cart .infos .details .details-total {
+    margin-top: 10px;
+    color: black;
+}
+
+.cart .infos .details .details-value {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.cart .infos .details .details-price {
+    margin-top: 10px;
+    font-weight: 800;
+    font-size: 26px;
+    color: black;
+}
+
+.cart .infos .button {
+    color: var(--iron-gray);
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 95%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart .infos .finish {
+    background-color: var(--cherry-blossom);
+}
+
+.cart .infos .continue {
+    background-color: #b0c4b153;
+}
+
+@media only screen and (max-width: 700px) {
+    .cart {
+        width: 90vh;
+        display: inline;
+        margin-left: 10%;
+    }
+
+    .cart .cart-products {
+        width: 100%;
+    }
+
+    .cart .infos {
+        width: 100%;
+        margin: 0;
+    }
+
+    .cart .infos .address h4,
+    .cart .infos .address,
+    .cart .infos .address button {
+        font-size: 30px;
+    }
+
+
+    .cart .infos .details .details-name, .products div {
+        font-size: 28px;
+    }
+
+    .cart .infos .details .details-value {
+        font-size: 31px;
+    }
+
+    .details-total{
+        padding-top: 12px;
+        font-size: 32px;
+    }
+
+    .cart .infos .details .details-price {
+        font-size: 38px;
+    }
+
+    .cart .infos .button {
+        width: 100%;
+        font-size: 30px;
+        height: 8vh;
+    }
+}
