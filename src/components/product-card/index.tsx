@@ -5,6 +5,7 @@ import { MdAddShoppingCart } from "react-icons/md";
 import type { SimpleProductResponse } from '@/commons/product';
 import { CartContext } from '@/contexts/CartContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getFinalPrice } from '@/utils/price';
 
 interface ProductCardProps{
@@ -14,9 +15,10 @@ interface ProductCardProps{
 export default function ProductCard({product} : ProductCardProps){    
     const { addProductCart } = useContext(CartContext);
     const isPromotion = product.discount > 0;
+    const navigate = useNavigate();
 
     return(
-        <div className="product" onClick={() => window.location.href = `/product/${product.id}`}>
+        <div className="product" onClick={() => navigate(`/product/${product.id}`)}>
             <div className="image">
                 <img src={product.mainImageUrl} alt={product.name} />
                 {

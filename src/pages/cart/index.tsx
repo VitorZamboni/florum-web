@@ -3,6 +3,7 @@ import ProductCart from "@/components/product-cart";
 import { CartContext } from "@/contexts/CartContext";
 import { useContext } from "react";
 import './style.css'
+import '@/components/layout/style.css'
 import { useCartPage } from "./use-cart-page";
 
 
@@ -46,9 +47,10 @@ export function Cart() {
                             <h4 className='details-total'>Total</h4>
                         </div>
                         <div>
-                            <h4 className='details-value'>R$ {productTotal?.toFixed(2) ?? 0}</h4>
-                            <h4 className='details-value'>Calculado na finalização</h4>                            <h4 className='details-value'>R$ {discount?.toFixed(2) ?? 0}</h4>
-                            <h4 className='details-price'>R$ {total?.toFixed(2) ?? 0}</h4>
+                            <h4 className='details-value'>R$ {productTotal.toFixed(2)}</h4>
+                            <h4 className='details-value'>Calculado na finalização</h4>
+                            <h4 className='details-value'>R$ {discount.toFixed(2)}</h4>
+                            <h4 className='details-price'>R$ {total.toFixed(2)}</h4>
                         </div>
                     </div>
 

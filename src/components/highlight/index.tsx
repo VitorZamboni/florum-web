@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./style.css"
+import '../layout/style.css'
 
 export default function Highlight() {
     return (

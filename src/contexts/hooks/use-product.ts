@@ -7,8 +7,8 @@ import { CartContext } from "../CartContext";
 
 export function useProduct() {
     const { addProductCart } = useContext(CartContext);
-    const [product, setProduct] = useState<ProductDetailResponse | undefined>(null!);
-    const [selectedImage, setSelectedImage] = useState<ImageResponse | undefined>(null!);
+    const [product, setProduct] = useState<ProductDetailResponse>();
+    const [selectedImage, setSelectedImage] = useState<ImageResponse>();
     const { id } = useParams();
     const idNumber:number =  Number(id);
     

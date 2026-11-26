@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 import { useContext, useEffect, useState } from "react";
 import { ToastContext } from "@/contexts/ToastContext";
 import { AuthContext } from "@/contexts/AuthContext";
@@ -11,7 +10,7 @@ const CART_STORAGE_KEY = 'cart';
 const emptyCart = (): Cart => ({ cartItems: [] });
 
 export function useCart() {
-    const [cart, setCart] = useState<Cart>({ cartItems: [] }); 
+    const [cart, setCart] = useState<Cart>(emptyCart());
     const { showToast } = useContext(ToastContext);
     const { user } = useContext(AuthContext);
 
@@ -60,6 +59,7 @@ export function useCart() {
             await loadProductsCart();
         };
         syncCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- recarrega só quando o usuário muda (login/logout)
     }, [user]);
 
     const addProductCart = async (product: SimpleProductResponse) => {
@@ -125,7 +125,7 @@ export function useCart() {
                 showToast("Não foi possível esvaziar o carrinho", "error");
             }
         } else {
-            localStorage.removeItem(CART_STORAGE_KEY);   // aqui ainda estava 'cart' fixo
+            localStorage.removeItem(CART_STORAGE_KEY);
         }
         await loadProductsCart();
     }

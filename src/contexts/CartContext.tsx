@@ -9,7 +9,7 @@ export interface CartContextType {
     handleUpdateQuantity: (item: CartItem, quantity: number) => Promise<void>;
     handleDeleteProduct: (item: CartItem) => Promise<void>;
     cart: Cart;
-    clearCart: () => void;
+    clearCart: () => Promise<void>;
     productTotal: number;
     total: number;
     discount: number;

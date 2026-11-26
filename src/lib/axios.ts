@@ -74,9 +74,13 @@ const del = async <T>(url: string): Promise<IResponse<T>> => {
     return response;
 } 
 
-const setToken = (token: string) => [
-    http.defaults.headers.common['Authorization'] = `Bearer ${token}`
-]
+const setToken = (token: string) => {
+    if (token) {
+        http.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    } else {
+        delete http.defaults.headers.common['Authorization'];
+    }
+}
 
 const api = {
     get,
