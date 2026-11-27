@@ -6,7 +6,7 @@ interface ProductOrderProps {
     item: OrderItemsResponse;
 }
 
-export default function ProductOrder({ item }: ProductOrderProps) {
+export function ProductOrder({ item }: ProductOrderProps) {
 
     return (
         <div className="product-order" onClick={() => window.location.href = `/product/${item.id}`}>

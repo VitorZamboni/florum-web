@@ -16,10 +16,8 @@ const postOrder = async (data: CreateOrderRequest): Promise<IResponse<CreateOrde
     return await api.post(path, data);
 }
 
-const OrderService = {
+export const OrderService = {
     getOrders,
     getOrderById,
     postOrder
 }
-
-export default OrderService;

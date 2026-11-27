@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import CategoryService from "@/services/category-service";
+import { CategoryService } from "@/services/category-service";
 import type { CategoryResponse } from "@/commons/category";
 
-export default function useCategory() {
+export function useCategory() {
     const [categories, setCategories] = useState<CategoryResponse[]>([]);
 
     useEffect(() => {

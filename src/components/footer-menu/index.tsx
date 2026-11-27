@@ -4,15 +4,15 @@ import { FiUser, FiLogOut } from "react-icons/fi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useHeader } from "../header/use-header";
-import BurgerMenu from "../burger-menu";
+import { useHeader } from "@/components/header/use-header";
+import { BurgerMenu } from "@/components/burger-menu";
 import { CartContext } from "@/contexts/CartContext";
 import { useContext } from "react";
 
 import './style.css';
 import "@/components/header/style.css";
 
-export default function FooterMenu() {
+export function FooterMenu() {
     const { user, menuOpen, handleUserIconClick, handleLogout, burgerOpen, handleBurgerToggle, handleBurgerClose } = useHeader();
     const {productsCartCount} = useContext(CartContext);
     return (

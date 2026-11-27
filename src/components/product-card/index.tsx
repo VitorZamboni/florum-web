@@ -12,7 +12,7 @@ interface ProductCardProps{
     product : SimpleProductResponse;
 }
 
-export default function ProductCard({product} : ProductCardProps){    
+export function ProductCard({product} : ProductCardProps){    
     const { addProductCart } = useContext(CartContext);
     const isPromotion = product.discount > 0;
     const navigate = useNavigate();

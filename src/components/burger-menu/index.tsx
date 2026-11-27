@@ -8,7 +8,7 @@ import { AuthContext } from '@/contexts/AuthContext';
 
 import './style.css';
 
-export default function BurgerMenu({ onClose }: { onClose: () => void }) {
+export function BurgerMenu({ onClose }: { onClose: () => void }) {
     const { user, handleLogout: handleLogoutContext } = useContext(AuthContext);
     const navigate = useNavigate();
 

@@ -8,8 +8,6 @@ const getAllCategories = async (): Promise<IResponse<CategoryResponse[]>> => {
     return api.get<CategoryResponse[]>(path);
 }
 
-const CategoryService = {
+export const CategoryService = {
     getAllCategories
 }
-
-export default CategoryService

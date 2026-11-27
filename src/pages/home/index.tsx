@@ -1,5 +1,5 @@
-import Carousel from "@/components/carousel";
-import Highlight from "@/components/highlight";
+import { Carousel } from "@/components/carousel";
+import { Highlight } from "@/components/highlight";
 import { useCarousel } from "@/components/carousel/use-carousel";
 import './style.css'
 import '../../components/layout/style.css'

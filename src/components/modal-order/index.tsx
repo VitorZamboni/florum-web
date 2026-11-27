@@ -1,6 +1,6 @@
 import { useOrder } from "./use-order";
 import "./style.css"
-import ProductOrder from "../product-order";
+import { ProductOrder } from "@/components/product-order";
 import type { PaymentType } from "@/commons/order";
 
 export interface ModalOrderProps {

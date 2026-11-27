@@ -2,7 +2,7 @@ import './style.css'
 import { FaPix } from "react-icons/fa6";
 import { RiVisaFill, RiMastercardLine } from "react-icons/ri";
 
-function Footer() {
+export function Footer() {
     return (
         <>
             <footer className='footer'>
@@ -59,5 +59,3 @@ function Footer() {
         </>
     );
 }
-
-export default Footer;

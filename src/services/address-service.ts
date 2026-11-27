@@ -25,12 +25,10 @@ const getShipping = async (id: number, subtotal: number): Promise<IResponse<Ship
     return await api.get<ShippingResponse>(`${path}/${id}/shipping`, { subtotal: subtotal.toFixed(2) });
 }
 
-const AddressService = {
+export const AddressService = {
     deleteAddress,
     saveAddress,
     getAddressByCep, 
     getAddresses,
     getShipping
 }
-
-export default AddressService;

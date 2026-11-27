@@ -3,7 +3,7 @@ import '@/components/layout/style.css'
 import { MdAddShoppingCart } from "react-icons/md";
 import { useProduct } from "./use-product";
 import { FaRegCheckCircle, FaStar } from "react-icons/fa";
-import Carousel from "@/components/carousel"
+import { Carousel } from "@/components/carousel"
 import { useCarousel } from "@/components/carousel/use-carousel";
 import { FREE_SHIPPING_THRESHOLD, getFinalPrice, hasFreeShipping } from '@/utils/price';
 

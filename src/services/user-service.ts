@@ -15,10 +15,8 @@ const login = async (data: LoginRequest): Promise<IResponse<LoginResponse>> => {
 const signup = async (data: SignupRequest): Promise<IResponse<void>> => {
     return api.post(path, data);
 }
-const UserService = {
+export const UserService = {
     existsUser,
     login,
     signup
 };
-
-export default UserService;

@@ -20,11 +20,9 @@ const deleteItem = async (itemId: number): Promise<IResponse<void>> => {
     return api.del(`${path}/cartItem/${itemId}`);
 }
 
-const CartService = {
+export const CartService = {
     createCart,
     get,
     updateItem,
     deleteItem
 }
-
-export default CartService

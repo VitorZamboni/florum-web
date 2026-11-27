@@ -1,5 +1,5 @@
 import type { ProductFilter, SimpleProductResponse } from "@/commons/product";
-import ProductService from "@/services/product-service";
+import { ProductService } from "@/services/product-service";
 import { useEffect, useState } from "react";
 
 interface CarouselProps {

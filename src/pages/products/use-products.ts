@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import ProductService from "@/services/product-service";
+import { ProductService } from "@/services/product-service";
 import type { ProductFilter, SimpleProductResponse } from "@/commons/product";
 import { useSearchParams } from "react-router-dom";
 
-export default function useProducts() {
+export function useProducts() {
     const [products, setProducts] = useState<SimpleProductResponse[]>([]);
     const [totalPages, setTotalPages] = useState(0);
     const [loading, setLoading] = useState(true);

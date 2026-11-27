@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { SimpleOrderResponse } from "@/commons/order";
-import OrderService from "@/services/order-service";
+import { OrderService } from "@/services/order-service";
 
 export function useOrders() {
     const [orders, setOrders] = useState<SimpleOrderResponse[]>([]);

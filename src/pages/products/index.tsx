@@ -1,8 +1,8 @@
-import ProductCard from '@/components/product-card'
-import useProducts from './use-products';
+import { ProductCard } from '@/components/product-card'
+import { useProducts } from './use-products';
 import './style.css'
 import '@/components/layout/style.css'
-import useCategory from './use-category';
+import { useCategory } from './use-category';
 import { useSearchParams } from 'react-router-dom';
 
 export function ProductsPage() {

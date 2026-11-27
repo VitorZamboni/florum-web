@@ -7,7 +7,7 @@ import { BsBoxSeam } from 'react-icons/bs';
 import { useContext } from 'react';
 import { CartContext } from '@/contexts/CartContext';
 
-function Header() {
+export function Header() {
     const { user, menuOpen, handleUserIconClick, handleLogout, handleOrder, search, setSearch, handleSearch, handleDestaques } = useHeader();
     const {productsCartCount} = useContext(CartContext);
 
@@ -65,5 +65,3 @@ function Header() {
             </header>
     );
 }
-
-export default Header;

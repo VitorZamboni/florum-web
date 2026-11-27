@@ -1,6 +1,6 @@
 import './style.css'
 import '@/components/layout/style.css'
-import ProductCard from '../product-card/index';
+import { ProductCard } from '@/components/product-card';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useRef } from 'react';
 import type { SimpleProductResponse } from '@/commons/product';
@@ -10,7 +10,7 @@ interface CarouselProps {
     title: string;
 }
 
-export default function Carousel({ products, title }: CarouselProps) {
+export function Carousel({ products, title }: CarouselProps) {
     const carousel = useRef<HTMLDivElement>(null!);
 
     const handleLeftClick = (e: React.MouseEvent<HTMLButtonElement>) => {

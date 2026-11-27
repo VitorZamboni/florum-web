@@ -1,5 +1,5 @@
-import Carousel from "@/components/carousel";
-import ProductCart from "@/components/product-cart";
+import { Carousel } from "@/components/carousel";
+import { ProductCart } from "@/components/product-cart";
 import { CartContext } from "@/contexts/CartContext";
 import { useContext } from "react";
 import './style.css'

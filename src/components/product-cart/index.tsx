@@ -8,7 +8,7 @@ import { useProductCart } from './use-product-cart';
 import { getFinalPrice } from '@/utils/price';
 import { useNavigate } from 'react-router-dom';
 
-export default function ProductCart(item: CartItem) {
+export function ProductCart(item: CartItem) {
     const { product, quantity } = item;
     const { handleUpdateQuantity, handleDeleteProduct } = useContext(CartContext);
     const { handleDeleteClick, showPopoverDelete } = useProductCart();

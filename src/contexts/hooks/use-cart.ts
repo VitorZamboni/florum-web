@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ToastContext } from "@/contexts/ToastContext";
 import { AuthContext } from "@/contexts/AuthContext";
-import CartService from "@/services/cart-service";
+import { CartService } from "@/services/cart-service";
 import type { Cart, CartItem } from "@/commons/cart";
 import type { SimpleProductResponse } from "@/commons/product";
 import { getFinalPrice } from "@/utils/price";

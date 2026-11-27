@@ -12,9 +12,7 @@ const getProductById = async (id: number): Promise<IResponse<ProductDetailRespon
     return await api.get<ProductDetailResponse>(`${path}/${id}`);
 }
 
-const ProductService = {
+export const ProductService = {
     getProductsPage,
     getProductById
 }
-
-export default ProductService;

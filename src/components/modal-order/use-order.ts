@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { OrderResponse } from "@/commons/order";
-import OrderService from "@/services/order-service";
+import { OrderService } from "@/services/order-service";
 
 export function useOrder(id: number) {
     const [order, setOrder] = useState<OrderResponse>(null!);

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { ToastContext } from "@/contexts/ToastContext";
-import AddressService from "@/services/address-service";
+import { AddressService } from "@/services/address-service";
 import type { Address, CreateAddressRequest } from "@/commons/address";
 
 const emptyForm = (): CreateAddressRequest => ({

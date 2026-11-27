@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "@/contexts/CartContext";
 import { ToastContext } from "@/contexts/ToastContext";
-import AddressService from "@/services/address-service";
-import CouponService from "@/services/coupon-service";
-import OrderService from "@/services/order-service";
+import { AddressService } from "@/services/address-service";
+import { CouponService } from "@/services/coupon-service";
+import { OrderService } from "@/services/order-service";
 import type { Address } from "@/commons/address";
 import type { PaymentType } from "@/commons/order";
 

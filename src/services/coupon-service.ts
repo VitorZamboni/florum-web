@@ -8,8 +8,6 @@ const getByCode = async (code: string): Promise<IResponse<CouponResponse>> => {
     return await api.get<CouponResponse>(`${path}/${encodeURIComponent(code)}`);
 }
 
-const CouponService = {
+export const CouponService = {
     getByCode
 }
-
-export default CouponService;

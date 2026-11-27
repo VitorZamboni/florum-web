@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { emailValidator, requiredValidator } from "@/utils/validators";
 import { ToastContext } from "@/contexts/ToastContext";
-import UserService from "@/services/user-service";
+import { UserService } from "@/services/user-service";
 import { useAuth } from "@/contexts/hooks/use-auth";
 
 export function useSignup() {
