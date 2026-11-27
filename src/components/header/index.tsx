@@ -1,15 +1,15 @@
 import './style.css'
 import { FiUser, FiLogOut } from "react-icons/fi";
-import { MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlineSearch, MdOutlineShoppingCart } from "react-icons/md";
 // import { MdOutlineSearch } from "react-icons/md";
 import { Link } from 'react-router-dom';
-import { useHeader } from './useHeader';
+import { useHeader } from './use-header';
 import { BsBoxSeam } from 'react-icons/bs';
 import { useContext } from 'react';
 import { CartContext } from '@/contexts/CartContext';
 
 function Header() {
-    const { user, menuOpen, handleUserIconClick, handleLogout, handleOrder } = useHeader();
+    const { user, menuOpen, handleUserIconClick, handleLogout, handleOrder, search, setSearch, handleSearch } = useHeader();
     const {productsCartCount} = useContext(CartContext);
 
     const destaque = Math.floor(Math.random() * (3)) + 1;
@@ -20,9 +20,13 @@ function Header() {
                         <Link to="/"><h1>Florum</h1></Link>
                     </div>
 
-                    {/* <div className='search'>
-                        <InputBar icon={MdOutlineSearch} />
-                    </div> */}
+                    <form className='inputBar' onSubmit={handleSearch}>
+                        <input type="search" name="inputBar" id="inputBar" 
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <button type="submit" aria-label="Pesquisar"><MdOutlineSearch/></button>
+                    </form>
 
                     <div>
                         <div className="user-menu-wrapper" >
