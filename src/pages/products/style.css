@@ -54,6 +54,32 @@
     width: 80%;
 }
 
+.container-products .empty-products {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.container-products .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin: 32px 0;
+}
+
+.container-products .pagination button {
+    padding: 6px 16px;
+    border: 1px solid var(--iron-gray);
+    border-radius: 15px;
+    background-color: #e6e5e5;
+    cursor: pointer;
+}
+
+.container-products .pagination button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
 @media only screen and (max-width: 1200px) {
     .container .products {
         grid-template-columns: repeat(2, 50%);

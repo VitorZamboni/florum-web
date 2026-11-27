@@ -5,6 +5,8 @@ import { useSearchParams } from "react-router-dom";
 
 export default function useProducts() {
     const [products, setProducts] = useState<SimpleProductResponse[]>([]);
+    const [totalPages, setTotalPages] = useState(0);
+    const [loading, setLoading] = useState(true);
     const [searchParams] = useSearchParams();
 
     const page = Number(searchParams.get('page') ?? 0);
@@ -22,18 +24,16 @@ export default function useProducts() {
 
     useEffect(() => {
         async function loadProducts() {
-            try {
-                const response = await ProductService.getProductsPage(page, 10, filter);
-
-                if (response.status == 200 && response.data) {
-                    setProducts(response.data.content);
-                }
-            } catch (error) {
-                console.error("Erro ao carregar produtos ", error);
+            setLoading(true);
+            const response = await ProductService.getProductsPage(page, 9, filter);
+            if (response.success && response.data) {
+                setProducts(response.data.content);
+                setTotalPages(response.data.totalPages);
             }
+            setLoading(false);
         }
         loadProducts();
     }, [searchParams])
 
-    return products;
+    return { products, totalPages, loading, page };
 }

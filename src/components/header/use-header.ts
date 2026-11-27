@@ -1,12 +1,21 @@
 import { useContext, useState, type FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { AuthContext } from "@/contexts/AuthContext";
 
 export function useHeader() {
     const { user, handleLogout: handleLogoutContext } = useContext(AuthContext);
     const [menuOpen, setMenuOpen] = useState(false);
     const [burgerOpen, setBurgerOpen] = useState(false);
-    const [search, setSearch] = useState("");
+    const [searchParams] = useSearchParams();
+    const urlText = searchParams.get("text") ?? "";
+
+    const [search, setSearch] = useState(urlText);
+    const [prevUrlText, setPrevUrlText] = useState(urlText);
+
+    if (urlText !== prevUrlText) {
+        setPrevUrlText(urlText);
+        setSearch(urlText);
+    }
     const navigate = useNavigate();
 
     const handleUserIconClick = () => {

@@ -9,6 +9,8 @@ export interface ProductFilter {
 
 export interface ProductPageResponse {
     content: SimpleProductResponse[];
+    number: number;
+    totalPages: number;
 }
 
 export interface SimpleProductResponse {
