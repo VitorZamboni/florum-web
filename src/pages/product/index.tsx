@@ -1,10 +1,10 @@
 import './style.css'
 import '@/components/layout/style.css'
 import { MdAddShoppingCart } from "react-icons/md";
-import { useProduct } from "@/contexts/hooks/use-product";
+import { useProduct } from "./use-product";
 import { FaRegCheckCircle, FaStar } from "react-icons/fa";
 import Carousel from "@/components/carousel"
-import { useCarousel } from "@/contexts/hooks/use-carousel";
+import { useCarousel } from "@/components/carousel/use-carousel";
 import { FREE_SHIPPING_THRESHOLD, getFinalPrice, hasFreeShipping } from '@/utils/price';
 
 export function Product() {

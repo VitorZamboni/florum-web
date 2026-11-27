@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "@/contexts/CartContext";
 import { ToastContext } from "@/contexts/ToastContext";
-import { useCarousel } from "@/contexts/hooks/use-carousel";
+import { useCarousel } from "@/components/carousel/use-carousel";
 
 export function useCartPage() {
     const { cart, clearCart } = useContext(CartContext);

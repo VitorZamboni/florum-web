@@ -1,4 +1,4 @@
-import UseOrder from "@/contexts/hooks/use-order";
+import { useOrder } from "./use-order";
 import "./style.css"
 import ProductOrder from "../product-order";
 import type { PaymentType } from "@/commons/order";
@@ -22,7 +22,7 @@ function paymentType(type: PaymentType): string {
 };
 
 export function ModalOrder({ isOpen, orderId }: ModalOrderProps) {
-    const order = UseOrder.useOrder(orderId);
+    const order = useOrder(orderId);
     console.log(order);
 
     if (isOpen) {

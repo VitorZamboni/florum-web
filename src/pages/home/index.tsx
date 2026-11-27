@@ -1,6 +1,6 @@
 import Carousel from "@/components/carousel";
 import Highlight from "@/components/highlight";
-import { useCarousel } from "@/contexts/hooks/use-carousel";
+import { useCarousel } from "@/components/carousel/use-carousel";
 import './style.css'
 import '../../components/layout/style.css'
 import bannerOferta from '@/assets/bannerOferta.png'

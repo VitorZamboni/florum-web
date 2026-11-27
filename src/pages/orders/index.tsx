@@ -1,7 +1,7 @@
 import type { OrderStatus } from '@/commons/order';
 import './style.css';
 import '@/components/layout/style.css';
-import UseOrder from "@/contexts/hooks/use-order";
+import { useOrders } from "./use-orders";
 import { useState } from 'react';
 import { ModalOrder } from '@/components/modal-order';
 
@@ -28,7 +28,7 @@ function statusSpecs(pedidoStatus: OrderStatus): StatusPt {
 };
 
 export function Orders() {
-    const orders = UseOrder.useOrders();
+    const orders = useOrders();
     const [open, setOpen] = useState<number | null>(null);
 
     const handleButtonClick = (orderId: number) => {

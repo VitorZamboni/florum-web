@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import ProductService from "@/services/product-service";
 import { useParams } from "react-router-dom";
 import type { ImageResponse, ProductDetailResponse } from "@/commons/product";
-import { CartContext } from "../CartContext";
+import { CartContext } from "@/contexts/CartContext";
 
 export function useProduct() {
     const { addProductCart } = useContext(CartContext);
