@@ -1,7 +1,6 @@
 import './style.css'
 import { FiUser, FiLogOut } from "react-icons/fi";
 import { MdOutlineSearch, MdOutlineShoppingCart } from "react-icons/md";
-// import { MdOutlineSearch } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { useHeader } from './use-header';
 import { BsBoxSeam } from 'react-icons/bs';

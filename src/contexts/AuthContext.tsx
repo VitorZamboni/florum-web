@@ -46,7 +46,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       localStorage.setItem(
         "token",
-        // JSON.stringify(authenticationResponse.token)
         authenticationResponse.token
       );
       localStorage.setItem("user", JSON.stringify(authenticationResponse.user));

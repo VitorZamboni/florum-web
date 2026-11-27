@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import ProductService from "@/services/product-service";
-// import { saveToHistory } from "@/services/HistoryService";
 import { useParams } from "react-router-dom";
 import type { ImageResponse, ProductDetailResponse } from "@/commons/product";
 import { CartContext } from "../CartContext";
@@ -17,7 +16,6 @@ export function useProduct() {
             .then(data => {
                 setProduct(data.data);
                 setSelectedImage(data.data?.images[0]);
-                // saveToHistory(data.id);
             })
             .catch(error => console.error("Erro ao carregar produto: ", error));
     }, [id]);
