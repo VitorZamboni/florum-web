@@ -1,0 +1,56 @@
+.footerMenu {
+    margin: 0;
+    padding: 25px;
+    background-color: var(--ash-gray);
+    height: 115px;
+    width: 100vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-items: center;
+    z-index: 10;
+}
+
+.footerMenu-icons {
+    display: flex;
+    justify-content: center;
+    gap: 50%;
+}
+
+.footerMenu-icon {
+    font-size: 65px;
+    padding: 0;
+}
+
+.footerMenu-cart-count {
+    position: absolute;
+    top: -12px;
+    right: -11px;
+    background-color: var(--iron-gray);
+    color: var(--cherry-blossom);
+    border: 1.5px solid var(--cherry-blossom);
+    font-size: 28px;
+    font-weight: 700;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footerMenu-cart-link {
+    position: relative;
+    display: inline-flex;
+}
+
+
+.footerMenu a,
+.footerMenu a:visited,
+.footerMenu a:active,
+.footerMenu a:hover,
+.footerMenu a:focus {
+    text-decoration: none;
+    color: var(--iron-gray);
+}

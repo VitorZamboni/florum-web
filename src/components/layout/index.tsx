@@ -3,6 +3,7 @@ import "./style.css"
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Toast } from "@/components/toast";
+import FooterMenu from "../footer-menu";
 
 export function Layout() {
   return (
@@ -12,7 +13,12 @@ export function Layout() {
       <main className="main-content">
         <Outlet />
       </main>
-    <Footer/>
+    <div className="footer-app">
+      <Footer></Footer>
+    </div>
+    <div className="footerMenu-app">
+      <FooterMenu ></FooterMenu>
+    </div>
     </>
   );
 }

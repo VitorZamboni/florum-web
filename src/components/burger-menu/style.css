@@ -1,0 +1,138 @@
+.burger-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 200;
+    touch-action: none;
+}
+
+.burger-panel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    background-color: var(--ash-gray);
+    z-index: 201;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 30px 24px;
+    animation: burgerSlideIn 0.2s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.burger-footer {
+    margin-top: auto;
+}
+
+@keyframes burgerSlideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.burger-header {
+    margin-bottom: 28px;
+    text-align: left;
+}
+
+.burger-header h2 {
+    font-family: var(--font-logo);
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--iron-gray);
+    margin: 0;
+}
+
+.burger-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 0;
+}
+
+.burger-section-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--iron-gray);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    opacity: 0.6;
+    text-align: left;
+}
+
+.burger-item {
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 30px;
+    color: var(--iron-gray);
+    cursor: pointer;
+    padding: 10px 0 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+}
+
+.burger-item:active {
+    opacity: 0.6;
+}
+
+.burger-divider {
+    margin: 0;
+    border: none;
+    border-top: 0.3px solid var(--iron-gray);
+}
+
+.burger-user-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0 10px 12px;
+}
+
+.burger-user-icon {
+    font-size: 36px;
+    color: var(--iron-gray);
+    flex-shrink: 0;
+}
+
+.burger-user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.burger-user-name {
+    text-align: left;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--iron-gray);
+}
+
+.burger-user-email {
+    font-size: 22px;
+    color: var(--iron-gray);
+    opacity: 0.6;
+}
+
+.burger-contact-item {
+    font-size: 26px;
+    color: var(--iron-gray);
+    padding: 6px 0 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+}
+
+.burger-copyright {
+    display: block;
+    font-size: 19px;
+    color: var(--iron-gray);
+    opacity: 0.6;
+    padding: 16px 0;
+    text-align: left;
+}
