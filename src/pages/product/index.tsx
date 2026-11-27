@@ -10,7 +10,7 @@ import { FREE_SHIPPING_THRESHOLD, getFinalPrice, hasFreeShipping } from '@/utils
 export function ProductPage() {
     const { product, selectedImage, handleImageClick, handleAddToCart } = useProduct();
     const isPromotion:boolean = Number(product?.discount) > 0;
-    const products = useCarousel({ promotion: false, categoryIds: [] });
+    const products = useCarousel({ promotion: false });
 
     return (
         <>

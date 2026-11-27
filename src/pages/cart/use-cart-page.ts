@@ -8,7 +8,7 @@ export function useCartPage() {
     const { cart, clearCart } = useContext(CartContext);
     const { showToast } = useContext(ToastContext);
     const navigate = useNavigate();
-    const products = useCarousel({ promotion: true, categoryIds: [] });
+    const products = useCarousel({ promotion: true });
 
     const handleKeepBuying = () => {
         navigate('/products');

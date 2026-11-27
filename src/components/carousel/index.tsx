@@ -11,16 +11,20 @@ interface CarouselProps {
 }
 
 export function Carousel({ products, title }: CarouselProps) {
-    const carousel = useRef<HTMLDivElement>(null!);
+    const carousel = useRef<HTMLDivElement>(null);
 
     const handleLeftClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        carousel.current.scrollLeft -= carousel.current.offsetWidth;
+        const el = carousel.current;
+        if (!el) return;
+        el.scrollLeft -= el.offsetWidth;
     }
 
     const handleRightClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        carousel.current.scrollLeft += carousel.current.offsetWidth;
+        const el = carousel.current;
+        if (!el) return;
+        el.scrollLeft += el.offsetWidth;
     }
 
     return (
@@ -35,7 +39,7 @@ export function Carousel({ products, title }: CarouselProps) {
                 <div className="card">
                     <div className="carousel" ref={carousel}>
                         {products.map((p) => (
-                            <ProductCard product={p} />
+                            <ProductCard key={p.id} product={p} />
                         ))
                         }
                     </div>

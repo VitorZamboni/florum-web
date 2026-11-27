@@ -6,8 +6,8 @@ import '../../components/layout/style.css'
 import bannerOferta from '@/assets/bannerOferta.png'
 
 export const HomePage = () => {
-  const dataNovidades = useCarousel({ promotion: false, categoryIds: [] });
-  const dataPromocoes = useCarousel({ promotion: true, categoryIds: [] });
+  const dataNovidades = useCarousel({ promotion: false });
+  const dataPromocoes = useCarousel({ promotion: true });
 
   return (
     <>

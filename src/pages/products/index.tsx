@@ -71,7 +71,7 @@ export function ProductsPage() {
                         <label>Filtrar por: </label>
                         <select value={searchParams.get("categoryId") ?? ""} id="optionFilter" className='text-decoration' onChange={(e) => handleCategoryFilter(e.target.value)}>
                             <option value="">Todos os Produtos</option>
-                            {categories?.map((c) => (<option value={c.id}>{c.name}</option>))}
+                            {categories?.map((c) => (<option key={c.id} value={c.id}>{c.name}</option>))}
                         </select>
                     </div>
 

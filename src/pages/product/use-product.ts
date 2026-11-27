@@ -23,7 +23,7 @@ export function useProduct() {
             }
         }
         loadProduct();
-    }, [id]);
+    }, [idNumber]);
 
     const handleImageClick = (image: ImageResponse) => {
         setSelectedImage(image);

@@ -4,15 +4,14 @@ import { useEffect, useState } from "react";
 
 interface CarouselProps {
     promotion: ProductFilter['promotion'],
-    categoryIds: ProductFilter['categoryIds']
 }
 
-export function useCarousel({ promotion, categoryIds }: CarouselProps) {
+export function useCarousel({ promotion }: CarouselProps) {
     const [products, setProducts] = useState<SimpleProductResponse[]>([]);
 
     useEffect(() => {
         async function loadProductsCarousel() {
-            const response = await ProductService.getProductsPage(0, 9, { sort: 'RECENTS', text: '', promotion: promotion, categoryIds: categoryIds });
+            const response = await ProductService.getProductsPage(0, 9, { sort: 'RECENTS', text: '', promotion: promotion, categoryIds: [] });
 
             if (response.success && response.data) {
                 setProducts(response.data.content);
@@ -21,7 +20,7 @@ export function useCarousel({ promotion, categoryIds }: CarouselProps) {
             }
         }
         loadProductsCarousel();
-    }, [])
+    }, [promotion])
 
     return products;
 }

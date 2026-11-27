@@ -15,15 +15,15 @@ export function useProducts() {
     const promotion = searchParams.get('promotion') === "true";
     const categoryId = searchParams.get('categoryId');
 
-    const filter: ProductFilter = {
-        text: text,
-        promotion: promotion,
-        categoryIds: categoryId ? [Number(categoryId)] : [],
-        sort: sort
-    };
-
     useEffect(() => {
         async function loadProducts() {
+            const filter: ProductFilter = {
+                text: text,
+                promotion: promotion,
+                categoryIds: categoryId ? [Number(categoryId)] : [],
+                sort: sort
+            };
+
             setLoading(true);
             const response = await ProductService.getProductsPage(page, 9, filter);
             if (response.success && response.data) {
@@ -33,7 +33,7 @@ export function useProducts() {
             setLoading(false);
         }
         loadProducts();
-    }, [searchParams])
+    }, [page, sort, text, promotion, categoryId])
 
     return { products, totalPages, loading, page };
 }
