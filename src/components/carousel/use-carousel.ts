@@ -12,15 +12,12 @@ export function useCarousel({ promotion, categoryIds }: CarouselProps) {
 
     useEffect(() => {
         async function loadProductsCarousel() {
-            try {
-                const response = await ProductService.getProductsPage(0, 9, { sort: 'RECENTS', text: '', promotion: promotion, categoryIds: categoryIds });
+            const response = await ProductService.getProductsPage(0, 9, { sort: 'RECENTS', text: '', promotion: promotion, categoryIds: categoryIds });
 
-                if (response.status === 200 && response.data) {
-                    setProducts(response.data.content);
-
-                }
-            } catch (error) {
-                console.error("Erro ao carregar produtos ", error);
+            if (response.success && response.data) {
+                setProducts(response.data.content);
+            } else {
+                console.error("Erro ao carregar produtos ", response.message);
             }
         }
         loadProductsCarousel();

@@ -7,14 +7,12 @@ export function useOrders() {
 
     useEffect(() => {
         async function loadOrders() {
-            try {
-                const response = await OrderService.getOrders();
+            const response = await OrderService.getOrders();
 
-                if (response.status == 200 && response.data) {
-                    setOrders(response.data);
-                }
-            } catch (error) {
-                console.error("Erro ao carregar pedidos ", error);
+            if (response.success && response.data) {
+                setOrders(response.data);
+            } else {
+                console.error("Erro ao carregar pedidos ", response.message);
             }
         }
         loadOrders();

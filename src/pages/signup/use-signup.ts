@@ -61,24 +61,20 @@ export function useSignup() {
             return;
         }
 
-        try {
-            const signupRes = await UserService.signup({ name, email, password });
-            if (signupRes.status === 201) {
-                const loginRes = await UserService.login({email, password});
-                if (loginRes.status === 200 && loginRes.data) {
-                    await handleLogin(loginRes.data); 
-                    showToast("Conta criada com sucesso!", "success");
-                    navigate(location.state?.from?.pathname ?? "/");
-                } else {
-                    showToast("Não foi possivel fazer login automaticamente faça-o agora", "error");
-                    navigate("/login", { state: location.state });
-                }
-            } else {
-                showToast("Erro ao criar conta de usuário verifique as informações inseridas", "error");
-            }
-            
-        } catch {
-            showToast("Erro ao criar conta. Tente novamente", "error");
+        const signupRes = await UserService.signup({ name, email, password });
+        if (!signupRes.success) {
+            showToast("Erro ao criar conta de usuário verifique as informações inseridas", "error");
+            return;
+        }
+
+        const loginRes = await UserService.login({ email, password });
+        if (loginRes.success && loginRes.data) {
+            await handleLogin(loginRes.data);
+            showToast("Conta criada com sucesso!", "success");
+            navigate(location.state?.from?.pathname ?? "/");
+        } else {
+            showToast("Não foi possivel fazer login automaticamente faça-o agora", "error");
+            navigate("/login", { state: location.state });
         }
     };
 

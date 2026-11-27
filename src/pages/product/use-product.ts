@@ -12,12 +12,17 @@ export function useProduct() {
     const idNumber:number =  Number(id);
     
     useEffect(() => {
-        ProductService.getProductById(idNumber)
-            .then(data => {
-                setProduct(data.data);
-                setSelectedImage(data.data?.images[0]);
-            })
-            .catch(error => console.error("Erro ao carregar produto: ", error));
+        async function loadProduct() {
+            const response = await ProductService.getProductById(idNumber);
+
+            if (response.success && response.data) {
+                setProduct(response.data);
+                setSelectedImage(response.data.images[0]);
+            } else {
+                console.error("Erro ao carregar produto ", response.message);
+            }
+        }
+        loadProduct();
     }, [id]);
 
     const handleImageClick = (image: ImageResponse) => {

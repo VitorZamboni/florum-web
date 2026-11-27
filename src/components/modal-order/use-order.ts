@@ -6,14 +6,12 @@ export function useOrder(id: number) {
     const [order, setOrder] = useState<OrderResponse>(null!);
     useEffect(() => {
         async function loadOrderById(id: number) {
-            try {
-                const response = await OrderService.getOrderById(id);
+            const response = await OrderService.getOrderById(id);
 
-                if (response.status == 200 && response.data) {
-                    setOrder(response.data);
-                }
-            } catch (error) {
-                console.error("Erro ao achar pedido por id ", error);
+            if (response.success && response.data) {
+                setOrder(response.data);
+            } else {
+                console.error("Erro ao achar pedido por id ", response.message);
             }
         }
         loadOrderById(id);

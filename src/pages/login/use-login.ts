@@ -25,16 +25,12 @@ export function useLogin() {
             return;
         }
 
-        try {
-            const response = await UserService.login({ email, password });
-            if (response.status === 200 && response.data) {
-                await handleLogin(response.data); 
-                showToast("Login realizado com sucesso!", "success");
-                navigate(location.state?.from?.pathname ?? "/");
-            } else {
-                showToast("Erro ao fazer login. Verifique suas credenciais", "error");
-            }
-        } catch {
+        const response = await UserService.login({ email, password });
+        if (response.success && response.data) {
+            await handleLogin(response.data);
+            showToast("Login realizado com sucesso!", "success");
+            navigate(location.state?.from?.pathname ?? "/");
+        } else {
             showToast("Erro ao fazer login. Verifique suas credenciais", "error");
         }
     };

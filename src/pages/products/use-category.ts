@@ -6,18 +6,16 @@ export function useCategory() {
     const [categories, setCategories] = useState<CategoryResponse[]>([]);
 
     useEffect(() => {
-        async function loadProducts() {
-            try {
-                const response = await CategoryService.getAllCategories();
+        async function loadCategories() {
+            const response = await CategoryService.getAllCategories();
 
-                if (response.status == 200 && response.data) {
-                    setCategories(response.data);
-                }
-            } catch (error) {
-                console.error("Erro ao carregar produtos ", error);
+            if (response.success && response.data) {
+                setCategories(response.data);
+            } else {
+                console.error("Erro ao carregar categorias ", response.message);
             }
         }
-        loadProducts();
+        loadCategories();
     }, [])
 
     return categories;
