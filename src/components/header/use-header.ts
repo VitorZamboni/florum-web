@@ -44,8 +44,13 @@ export function useHeader() {
         navigate(term ? `/products?text=${encodeURIComponent(term)}` : "/products");
     }
 
+    const handleDestaques = () => {
+        const categoryId = Math.floor(Math.random() * 3) + 1;
+        navigate(`/products?categoryId=${categoryId}`);
+    };
+
     const handleBurgerToggle = () => setBurgerOpen(prev => !prev);
     const handleBurgerClose = () => setBurgerOpen(false);
 
-    return { user, menuOpen, handleUserIconClick, handleLogout, handleOrder, burgerOpen, handleBurgerToggle, handleBurgerClose, search, setSearch, handleSearch };
+    return { user, menuOpen, handleUserIconClick, handleLogout, handleOrder, burgerOpen, handleBurgerToggle, handleBurgerClose, search, setSearch, handleSearch, handleDestaques };
 }

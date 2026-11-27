@@ -39,5 +39,5 @@ export function useLogin() {
         }
     };
 
-    return { setEmail, setPassword, onSubmit };
+    return { setEmail, setPassword, onSubmit, locationState: location.state };
 }

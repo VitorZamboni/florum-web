@@ -13,10 +13,16 @@ export default function Products() {
 
     const selectedCategoryId = searchParams.get("categoryId") ?? "";
     const searchText = searchParams.get("text") ?? "";
+    const isPromotion = searchParams.get("promotion") === "true";
 
     const categoryFilter = selectedCategoryId ? (categories?.find((c) => c.id === Number(selectedCategoryId))?.name ?? "Todos os Produtos") : "Todos os Produtos";
 
-    const title = searchText ? `Resultados para "${searchText}"` : categoryFilter;
+    let title = categoryFilter;
+    if (searchText) {
+        title = `Resultados para "${searchText}"`;
+    } else if (isPromotion) {
+        title = "Promoções";
+    }
 
     function handleCategoryFilter(id: string) {
         setSearchParams((prev) => {

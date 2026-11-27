@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { emailValidator, requiredValidator } from "@/utils/validators";
 import { ToastContext } from "@/contexts/ToastContext";
 import UserService from "@/services/user-service";
@@ -12,22 +12,35 @@ export function useSignup() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const { showToast } = useContext(ToastContext);
     const navigate = useNavigate();
+    const location = useLocation();
     const { handleLogin } =  useAuth();
 
+    const nameValidator = {
+        message: "deve ter entre 4 e 50 caracteres",
+        uid: "nameSize",
+        validate: (value: string) => value.length >= 4 && value.length <= 50
+    }
+
+    const emailSizeValidator = {
+        message: "deve ter no máximo 50 caracteres",
+        uid: "emailSize",
+        validate: (value: string) => value.length <= 50
+    }
+
     const passwordValidator = {
-        message: " deve conter pelo menos 8 caracteres",
+        message: "deve ter pelo menos 6 caracteres, com uma letra maiúscula, uma minúscula e um número",
         uid: "password",
-        validate: (value: string) => value.length >= 8
+        validate: (value: string) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/.test(value)
     }
 
     const confirmPasswordValidator = {
-        message: " não coincide com a senha",
+        message: "não coincide com a senha",
         uid: "confirmPassword",
         validate: (value: string) => value === password
     }
 
     const emailInUseValidator = {
-        message: " já está em uso por outro cliente",
+        message: "já está em uso por outro cliente",
         uid: "emailInUse",
         validate: async (value: string) => !((await UserService.existsUser(value)).data?.exists)
     }
@@ -36,8 +49,10 @@ export function useSignup() {
         e.preventDefault();
 
         const isValid = requiredValidator.validate(name)
+            && nameValidator.validate(name)
             && requiredValidator.validate(email)
             && emailValidator.validate(email)
+            && emailSizeValidator.validate(email)
             && passwordValidator.validate(password)
             && confirmPasswordValidator.validate(confirmPassword);
 
@@ -53,13 +68,13 @@ export function useSignup() {
                 if (loginRes.status === 200 && loginRes.data) {
                     await handleLogin(loginRes.data); 
                     showToast("Conta criada com sucesso!", "success");
-                    navigate("/");
+                    navigate(location.state?.from?.pathname ?? "/");
                 } else {
                     showToast("Não foi possivel fazer login automaticamente faça-o agora", "error");
-                    navigate("/login");
+                    navigate("/login", { state: location.state });
                 }
             } else {
-                showToast("Erro ao criar conta de usuário verifique as informações inseridas", "success");
+                showToast("Erro ao criar conta de usuário verifique as informações inseridas", "error");
             }
             
         } catch {
@@ -73,8 +88,11 @@ export function useSignup() {
         setPassword,
         setConfirmPassword,
         onSubmit,
+        nameValidator,
+        emailSizeValidator,
         passwordValidator,
         confirmPasswordValidator,
-        emailInUseValidator
+        emailInUseValidator,
+        locationState: location.state
     };
 }

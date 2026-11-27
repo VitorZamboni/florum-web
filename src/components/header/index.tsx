@@ -9,10 +9,9 @@ import { useContext } from 'react';
 import { CartContext } from '@/contexts/CartContext';
 
 function Header() {
-    const { user, menuOpen, handleUserIconClick, handleLogout, handleOrder, search, setSearch, handleSearch } = useHeader();
+    const { user, menuOpen, handleUserIconClick, handleLogout, handleOrder, search, setSearch, handleSearch, handleDestaques } = useHeader();
     const {productsCartCount} = useContext(CartContext);
 
-    const destaque = Math.floor(Math.random() * (3)) + 1;
     return (
             <header className="navbar">
                 <div className="header">
@@ -62,7 +61,7 @@ function Header() {
                 <div className="tabs">
                     <Link to={"/products"}><h3>Todos os produtos</h3></Link>
                     <Link to={"/products?promotion=true"}><h3>Promoções</h3></Link>
-                    <Link to={`/products?categoryId=${destaque}`}><h3>Destaques</h3></Link>
+                    <Link to="/products" onClick={(e) => { e.preventDefault(); handleDestaques(); }}><h3>Destaques</h3></Link>
                 </div>
             </header>
     );

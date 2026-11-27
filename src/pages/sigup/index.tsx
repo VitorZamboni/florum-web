@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useSignup } from "./use-signup";
 
 export function SignupPage() {
-  const { setEmail, setPassword, setConfirmPassword, setName, onSubmit, passwordValidator, confirmPasswordValidator, emailInUseValidator } = useSignup();
+  const { setEmail, setPassword, setConfirmPassword, setName, onSubmit, nameValidator, emailSizeValidator, passwordValidator, confirmPasswordValidator, emailInUseValidator, locationState } = useSignup();
     return (
       <div className='container login-container'>
         <h2 className='title'>Faça seu cadastro</h2>
@@ -17,7 +17,7 @@ export function SignupPage() {
             type="text"
             name="name"
             label="Nome de usuário"
-            validators={[requiredValidator]}
+            validators={[requiredValidator, nameValidator]}
             changeValue={setName}
           ></Input>
           <Input
@@ -25,7 +25,7 @@ export function SignupPage() {
             type="email"
             name="email"
             label="Email"
-            validators={[requiredValidator, emailValidator, emailInUseValidator]}
+            validators={[requiredValidator, emailValidator, emailSizeValidator, emailInUseValidator]}
             changeValue={setEmail}
           ></Input>
           <Input
@@ -48,7 +48,7 @@ export function SignupPage() {
           <button className='button login-button' type='submit'>Criar conta</button>
 
           <div className='not-account'>
-              <span >Já possui uma conta? <Link to="/login" className='span-link'>Fazer login</Link></span>
+              <span >Já possui uma conta? <Link to="/login" state={locationState} className='span-link'>Fazer login</Link></span>
           </div>
         </form>
       </div>

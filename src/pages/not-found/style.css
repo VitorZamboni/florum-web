@@ -1,0 +1,21 @@
+.not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+}
+
+.not-found .title {
+    text-align: center;
+}
+
+.not-found .not-found-button {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    padding: 0 24px;
+    color: var(--iron-gray);
+    font-weight: 700;
+    text-decoration: none;
+}

@@ -5,7 +5,7 @@ import { useProduct } from "@/contexts/hooks/use-product";
 import { FaRegCheckCircle, FaStar } from "react-icons/fa";
 import Carousel from "@/components/carousel"
 import { useCarousel } from "@/contexts/hooks/use-carousel";
-import { getFinalPrice } from '@/utils/price';
+import { FREE_SHIPPING_THRESHOLD, getFinalPrice, hasFreeShipping } from '@/utils/price';
 
 export function Product() {
     const { product, selectedImage, handleImageClick, handleAddToCart } = useProduct();
@@ -63,12 +63,9 @@ export function Product() {
                         <div className='product-shipping'>
                             <span className='small-text'>Frete: </span>
                             <span className='medium-text'>
-                                {/* {
-                                    !product?.shipping ?
-                                        'Gratis'
-                                        :
-                                        `R$ ${product?.shipping.toFixed(2)}`
-                                } */}
+                                {product && hasFreeShipping(getFinalPrice(product))
+                                    ? 'Grátis'
+                                    : `Grátis acima de R$ ${FREE_SHIPPING_THRESHOLD.toFixed(2)}`}
                             </span>
                         </div>
                     </div>
