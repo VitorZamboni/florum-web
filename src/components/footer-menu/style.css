@@ -1,9 +1,8 @@
 .footerMenu {
     margin: 0;
-    padding: 25px;
+    padding: 10px 16px;
     background-color: var(--ash-gray);
-    height: 115px;
-    width: 100vh;
+    height: 64px;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -14,26 +13,35 @@
 
 .footerMenu-icons {
     display: flex;
-    justify-content: center;
-    gap: 50%;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 }
 
-.footerMenu-icon {
-    font-size: 65px;
+.footerMenu-icons > div,
+.footerMenu-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footerMenu .footerMenu-icon {
+    font-size: 30px;
     padding: 0;
+    cursor: pointer;
 }
 
 .footerMenu-cart-count {
     position: absolute;
-    top: -12px;
-    right: -11px;
+    top: -8px;
+    right: -10px;
     background-color: var(--iron-gray);
     color: var(--cherry-blossom);
     border: 1.5px solid var(--cherry-blossom);
-    font-size: 28px;
+    font-size: 12px;
     font-weight: 700;
-    min-width: 40px;
-    height: 40px;
+    min-width: 20px;
+    height: 20px;
     border-radius: 50%;
     display: flex;
     align-items: center;

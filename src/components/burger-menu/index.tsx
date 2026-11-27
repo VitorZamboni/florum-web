@@ -5,13 +5,11 @@ import { BsBoxSeam, BsGrid, BsTag, BsStar } from 'react-icons/bs';
 import { FaPix } from 'react-icons/fa6';
 import { RiVisaFill, RiMastercardLine } from 'react-icons/ri';
 import { AuthContext } from '@/contexts/AuthContext';
-import { CartContext } from '@/contexts/CartContext';
 
 import './style.css';
 
 export default function BurgerMenu({ onClose }: { onClose: () => void }) {
     const { user, handleLogout: handleLogoutContext } = useContext(AuthContext);
-    const { clearCart } = useContext(CartContext);
     const navigate = useNavigate();
 
     const handleNav = (path: string) => {
@@ -21,7 +19,6 @@ export default function BurgerMenu({ onClose }: { onClose: () => void }) {
 
     const handleLogout = () => {
         handleLogoutContext();
-        clearCart();
         onClose();
         navigate('/');
     }
@@ -36,9 +33,9 @@ export default function BurgerMenu({ onClose }: { onClose: () => void }) {
 
                 <section className="burger-section">
                     <span className="burger-section-title">Navegação</span>
-                    <button className="burger-item" onClick={() => handleNav('/products/Todos os Produtos')}><BsGrid /> Todos os Produtos</button>
-                    <button className="burger-item" onClick={() => handleNav('/products/Promoções')}><BsTag /> Promoções</button>
-                    <button className="burger-item" onClick={() => handleNav('/products/Destaques')}><BsStar /> Destaques</button>
+                    <button className="burger-item" onClick={() => handleNav('/products')}><BsGrid /> Todos os Produtos</button>
+                    <button className="burger-item" onClick={() => handleNav('/products?promotion=true')}><BsTag /> Promoções</button>
+                    <button className="burger-item" onClick={() => handleNav(`/products?categoryId=${Math.floor(Math.random() * 3) + 1}`)}><BsStar /> Destaques</button>
                 </section>
 
                 <hr className="burger-divider" />

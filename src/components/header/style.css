@@ -157,8 +157,7 @@
 
 @media only screen and (max-width: 700px) {
     .navbar .header {
-        width: 100vh;
-        padding: 20px 20% 20px 20%;
+        padding: 10px 16px;
     }
 
     .user-menu-wrapper,
@@ -202,17 +201,8 @@
 }
 
 @media only screen and (max-width: 700px) {
-  .inputBar {
-    width: 700px;
-  }
-
-  .inputBar input {
-    height: 55px;
-    border-radius: 35px;
-  }
-
+  .inputBar input,
   .inputBar button {
-    border-radius: 0 35px 35px 0;
-    height: 55px;
+    height: 34px;
   }
 }

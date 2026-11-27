@@ -3,11 +3,16 @@
     align-items: center;
 }
 
+.body .card {
+    flex: 1;
+    min-width: 0;
+}
+
 .card .carousel {
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
-    width: 80vw;
+    width: 100%;
 }
 
 .card .carousel::-webkit-scrollbar {
@@ -34,13 +39,15 @@
 }
 
 @media only screen and (max-width: 700px) {
-    .card {
-        max-width: 100%;
-
+    .body .buttons {
+        width: 24px;
     }
 
-    .body {
-        width: 90%;
+    .body .buttons button {
+        font-size: 22px;
     }
 
+    .body .card {
+        padding: 8px 0;
+    }
 }

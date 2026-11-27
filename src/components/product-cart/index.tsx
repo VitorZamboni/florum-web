@@ -27,7 +27,6 @@ export default function ProductCart(item: CartItem) {
 
                 <div className="quantity">
                     <div className="text-decoration cart-quantity">
-                        <span>Quantidade: </span>
                         <div className="quantity-control">
                             <button
                                 className="quantity-button"
@@ -64,8 +63,7 @@ export default function ProductCart(item: CartItem) {
                     </div>
                 </div>
 
-                <div className="infos">
-                    <span>Valor: </span>
+                <div className="item-price">
                     <span className='price'>R$ {getFinalPrice(product).toFixed(2)}</span>
                 </div>
             </div>

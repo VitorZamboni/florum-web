@@ -112,40 +112,22 @@
 
 @media only screen and (max-width: 700px) {
     .product-container {
-        display: inline;
-        justify-items: center;
+        flex-direction: column;
+        gap: 16px;
     }
 
-    .product-image {
-        width: 90%;
+    .product-image,
+    .product-info {
+        width: 100%;
+    }
+
+    .product-image > img {
+        height: 40vh;
     }
 
     .product-info {
-        width: 100%;
-        justify-content: space-evenly;
-        padding-left: 2rem;
+        height: auto;
+        gap: 12px;
+        padding-left: 0;
     }
-
-    .product-info .product-buttons button {
-        font-size: 30px;
-    }
-
-    .large-text {
-        font-size: 3rem;
-    }
-
-    .medium-text, .description-text {
-        font-size: 2rem;
-    }
-
-    .small-text, .stock-text, .span-text {
-        font-size: 1.5rem;
-    }
-
-
-    .rating {
-        font-size: 24px;
-    }
-
-    
 }

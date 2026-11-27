@@ -98,41 +98,26 @@
 
 @media only screen and (max-width: 700px) {
     .container-products {
-        margin: 10%;
-        position: absolute;
-        width: 90vh;
         height: auto;
-        padding-bottom: 90px;
     }
 
     .filters-options {
         display: flex;
-        margin: 20px;
+        flex-wrap: wrap;
+        margin: 20px 0;
     }
 
     .filters {
         margin-right: 10px;
     }
 
-    .title {
-        font-size: 70px;
-    }
-
-    .text-decoration,
-    .text-decoration option {
-        font-size: 30px;
-    }
-
-    .text-decoration label {
-        font-size: 40px;
-    }
-
     .container .products {
-        grid-template-columns: repeat(1, 100%);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
     }
 
     .container .products .product {
-        width: 90%;
-        margin-bottom: 50px;
+        width: 100%;
+        margin: 0 0 16px;
     }
 }

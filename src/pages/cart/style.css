@@ -42,10 +42,16 @@
 }
 
 .cart .infos .details {
+    text-align: left;
+    padding: 16px;
+}
+
+.cart .infos .details .details-row {
     display: flex;
     justify-content: space-between;
-    text-align: left;
-    padding: 10px;
+    align-items: baseline;
+    gap: 12px;
+    padding: 4px 0;
 }
 
 .cart .infos .details .details-name {
@@ -53,20 +59,18 @@
     font-weight: 500;
 }
 
-.cart .infos .details .details-total {
-    margin-top: 10px;
-    color: black;
-}
-
 .cart .infos .details .details-value {
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 700;
+    text-align: right;
 }
 
-.cart .infos .details .details-price {
-    margin-top: 10px;
+.cart .infos .details .details-total {
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--dust-gray);
+    font-size: 24px;
     font-weight: 800;
-    font-size: 26px;
     color: black;
 }
 
@@ -75,7 +79,7 @@
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
-    width: 95%;
+    width: 100%;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
@@ -92,9 +96,7 @@
 
 @media only screen and (max-width: 700px) {
     .cart {
-        width: 90vh;
-        display: inline;
-        margin-left: 10%;
+        flex-direction: column;
     }
 
     .cart .cart-products {
@@ -106,33 +108,12 @@
         margin: 0;
     }
 
-    .cart .infos .address h4,
-    .cart .infos .address,
-    .cart .infos .address button {
-        font-size: 30px;
-    }
-
-
-    .cart .infos .details .details-name, .products div {
-        font-size: 28px;
-    }
-
+    .cart .infos .details .details-name,
     .cart .infos .details .details-value {
-        font-size: 31px;
+        font-size: 15px;
     }
 
-    .details-total{
-        padding-top: 12px;
-        font-size: 32px;
-    }
-
-    .cart .infos .details .details-price {
-        font-size: 38px;
-    }
-
-    .cart .infos .button {
-        width: 100%;
-        font-size: 30px;
-        height: 8vh;
+    .cart .infos .details .details-total {
+        font-size: 20px;
     }
 }

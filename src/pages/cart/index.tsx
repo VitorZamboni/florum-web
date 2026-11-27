@@ -33,17 +33,21 @@ export function Cart() {
 
                 <div className='infos '>
                     <div className="details card">
-                        <div>
-                            <h4 className='details-name'>Produtos ({productsCartCount})</h4>
-                            <h4 className='details-name'>Frete</h4>
-                            <h4 className='details-name'>Descontos</h4>
-                            <h4 className='details-total'>Total</h4>
+                        <div className='details-row'>
+                            <span className='details-name'>Produtos ({productsCartCount})</span>
+                            <span className='details-value'>R$ {productTotal.toFixed(2)}</span>
                         </div>
-                        <div>
-                            <h4 className='details-value'>R$ {productTotal.toFixed(2)}</h4>
-                            <h4 className='details-value'>{hasFreeShipping(total) ? 'Grátis' : 'Calculado na finalização'}</h4>
-                            <h4 className='details-value'>R$ {discount.toFixed(2)}</h4>
-                            <h4 className='details-price'>R$ {total.toFixed(2)}</h4>
+                        <div className='details-row'>
+                            <span className='details-name'>Frete</span>
+                            <span className='details-value'>{hasFreeShipping(total) ? 'Grátis' : 'Calculado na finalização'}</span>
+                        </div>
+                        <div className='details-row'>
+                            <span className='details-name'>Descontos</span>
+                            <span className='details-value'>- R$ {discount.toFixed(2)}</span>
+                        </div>
+                        <div className='details-row details-total'>
+                            <span>Total</span>
+                            <span>R$ {total.toFixed(2)}</span>
                         </div>
                     </div>
 
