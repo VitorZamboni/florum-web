@@ -11,6 +11,8 @@
     height: 370px;
     border-radius: 15px;
     flex: none;
+    display: flex;
+    flex-direction: column;
 }
 
 .product .image {
@@ -48,8 +50,14 @@
 }
 
 .product .container-info {
+    flex: 1;
     justify-content: space-between;
+    align-items: flex-end;
     display: flex;
+}
+
+.product .container-info .info {
+    align-self: flex-start;
 }
 
 .product .container-info .info {
@@ -100,33 +108,58 @@
 }
 
 @media only screen and (max-width: 700px) {
-    .name {
-        font-size: 32px;
+    .product {
+        width: 45%;
+        height: auto;
+        margin: 4px;
+        padding: 4px;
     }
 
-    .rating, .old-price {
-        font-size: 26px;
+    .product img {
+        height: 140px;
+    }
+
+    .product .name {
+        font-size: 15px;
+    }
+
+    .product .container-name .rating {
+        font-size: 12px;
     }
 
     .product .container-info .info {
-        font-size: 28px;
+        font-size: 15px;
+    }
+
+    .product .container-info .info > div:first-child {
+        white-space: nowrap;
+    }
+
+    .product .container-info .info .old-price {
+        display: block;
+        font-size: 11px;
+        padding-left: 0;
     }
 
     .product .container-info .info .installment {
-        font-size: 20px;
+        font-size: 11px;
+        padding-left: 0;
     }
 
     .product .container-info .info .installment .installment-values {
-        font-size: 24px;
+        font-size: 12px;
+    }
+
+    .product .image .discount-span {
+        font-size: 12px;
+    }
+
+    .product .cart-button .button {
+        width: 36px;
+        height: 32px;
     }
 
     .product .cart-button .addButton {
-        font-size: 30px;
-    }
-
-    .product {
-        margin: 5%;
-        width: 40%;
-        height: auto;
+        font-size: 18px;
     }
 }

@@ -4,9 +4,6 @@ export interface CreateCart {
     items: ProductQuantity[]
 }
 
-export interface CartCount {
-    count: number
-}
 export interface Cart {
     cartItems: CartItem[]; 
 }

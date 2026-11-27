@@ -1,15 +1,17 @@
 import './style.css'
 import { FiUser, FiLogOut } from "react-icons/fi";
-import { MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlineSearch, MdOutlineShoppingCart } from "react-icons/md";
 // import { MdOutlineSearch } from "react-icons/md";
 import { Link } from 'react-router-dom';
-import { useHeader } from './useHeader';
+import { useHeader } from './use-header';
 import { BsBoxSeam } from 'react-icons/bs';
+import { useContext } from 'react';
+import { CartContext } from '@/contexts/CartContext';
 
 function Header() {
-    const { user, menuOpen, handleUserIconClick, handleLogout, handleOrder } = useHeader();
+    const { user, menuOpen, handleUserIconClick, handleLogout, handleOrder, search, setSearch, handleSearch, handleDestaques } = useHeader();
+    const {productsCartCount} = useContext(CartContext);
 
-    const destaque = Math.floor(Math.random() * (3)) + 1;
     return (
             <header className="navbar">
                 <div className="header">
@@ -17,9 +19,13 @@ function Header() {
                         <Link to="/"><h1>Florum</h1></Link>
                     </div>
 
-                    {/* <div className='search'>
-                        <InputBar icon={MdOutlineSearch} />
-                    </div> */}
+                    <form className='inputBar' onSubmit={handleSearch}>
+                        <input type="search" name="inputBar" id="inputBar" 
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <button type="submit" aria-label="Pesquisar"><MdOutlineSearch/></button>
+                    </form>
 
                     <div>
                         <div className="user-menu-wrapper" >
@@ -47,7 +53,7 @@ function Header() {
                         </div>
                         <Link to="/cart" className='cart-link'>
                             <MdOutlineShoppingCart className='icons' />
-                            {/* {productsCartCount > 0 && <span className="cart-count">{productsCartCount}</span>} */}
+                            {productsCartCount > 0 && <span className="cart-count">{productsCartCount}</span>}
                         </Link>
                     </div>
 
@@ -55,7 +61,7 @@ function Header() {
                 <div className="tabs">
                     <Link to={"/products"}><h3>Todos os produtos</h3></Link>
                     <Link to={"/products?promotion=true"}><h3>Promoções</h3></Link>
-                    <Link to={`/products?categoryId=${destaque}`}><h3>Destaques</h3></Link>
+                    <Link to="/products" onClick={(e) => { e.preventDefault(); handleDestaques(); }}><h3>Destaques</h3></Link>
                 </div>
             </header>
     );

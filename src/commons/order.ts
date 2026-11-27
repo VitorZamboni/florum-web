@@ -36,7 +36,7 @@ export interface CreateOrderRequest {
     addressId: number;
     paymentType: PaymentType;
     couponCode?: string;
-    productQuantity: ProductQuantity;
+    items: ProductQuantity[];
 }
 
 export interface CreateOrderResponse {

@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductService from "@/services/product-service";
 // import { saveToHistory } from "@/services/HistoryService";
 import { useParams } from "react-router-dom";
 import type { ImageResponse, ProductDetailResponse } from "@/commons/product";
+import { CartContext } from "../CartContext";
 
 export function useProduct() {
-    const [product, setProduct] = useState<ProductDetailResponse | undefined>(null!);
-    const [selectedImage, setSelectedImage] = useState<ImageResponse | undefined>(null!);
+    const { addProductCart } = useContext(CartContext);
+    const [product, setProduct] = useState<ProductDetailResponse>();
+    const [selectedImage, setSelectedImage] = useState<ImageResponse>();
     const { id } = useParams();
     const idNumber:number =  Number(id);
     
@@ -24,5 +26,17 @@ export function useProduct() {
         setSelectedImage(image);
     };
 
-    return { product, selectedImage, setSelectedImage, handleImageClick };
+    const handleAddToCart = () => {
+        if (!product) return;
+        addProductCart({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            discount: product.discount,
+            evaluation: product.evaluation,
+            mainImageUrl: product.images[0]?.url,
+        });
+    };
+
+    return { product, selectedImage, setSelectedImage, handleImageClick, handleAddToCart };
 }

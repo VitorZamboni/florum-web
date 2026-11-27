@@ -7,7 +7,7 @@ import { Input } from '@/components/input';
 import { emailValidator, requiredValidator } from '@/utils/validators';
 
 export function LoginPage() {
-    const { setEmail, setPassword, onSubmit } = useLogin();
+    const { setEmail, setPassword, onSubmit, locationState } = useLogin();
 
     return (
         <div className='container login-container'>
@@ -34,7 +34,7 @@ export function LoginPage() {
                 <button className='button login-button' type="submit">Entrar</button>
 
                 <div className='not-account'>
-                    <span >Não possui uma conta? <Link to="/signup" className='span-link'>Criar cadastro</Link></span>
+                    <span >Não possui uma conta? <Link to="/signup" state={locationState} className='span-link'>Criar cadastro</Link></span>
                 </div>
             </form>
         </div>

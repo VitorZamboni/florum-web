@@ -8,6 +8,8 @@ import { RequireAuth } from "@/components/require-auth";
 import { Product } from "@/pages/product";
 import Products from "@/pages/products";
 import { Cart } from "@/pages/cart";
+import { CheckoutPage } from "@/pages/checkout";
+import { NotFoundPage } from "@/pages/not-found";
 
 export function AppRoutes() {
   return (
@@ -24,7 +26,10 @@ export function AppRoutes() {
         {/* protected routes */}
         <Route element={<RequireAuth />}>
           <Route path="/orders" element={<Orders />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
         </Route>
+        {/* not found */}
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );

@@ -53,18 +53,7 @@
 }
 
 @media only screen and (max-width: 700px) {
-    .input-container {
-        font-size: 26px;
-    }
-
     .input-container input {
-        font-size: 28px;
-        padding: 16px 42px;
+        padding: 12px 36px;
     }
-
-    .error-message {
-        font-size: 22px;
-    }
-
-
 }

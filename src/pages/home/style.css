@@ -26,12 +26,13 @@
 
 
 @media only screen and (max-width: 700px) {
-    .main-content {
-        align-items: stretch;
+    .banner {
+        height: auto;
+        margin-bottom: 0;
     }
 
-    .banner {
-        width: 100vh;
-        height: 44vh;
+    .banner img {
+        display: block;
+        height: auto;
     }
 }
