@@ -74,3 +74,13 @@
 .blue {
     color: #325FA9;
 }
+
+.order-see-more {
+    all: unset;
+    cursor: pointer;
+    color: var(--cherry-blossom);
+}
+
+.order-see-more:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,78 @@
+.order-modal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-items {
+    margin: 30px 10px 10px 10px;
+    width: 40vw;
+    height: 50vh;
+    overflow-y: scroll;
+    border: 1.5px solid var(--dust-gray);
+    border-radius: 20px;
+    scrollbar-width: thin;
+}
+
+.order-infos {
+    margin: 30px 10px 10px 10px;
+}
+
+.order-payment-prices {
+    display: flex;
+    width: 40vw;
+    height: 25vh;
+}
+
+.order-payment {
+    width: 20vw;
+    margin: 0 10px 10px 0;
+    border: 1.5px solid var(--dust-gray);
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-prices {
+    margin: 0 0 10px 10px;
+    padding: 10px;
+    border: 1.5px solid var(--dust-gray);
+    border-radius: 20px;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-address {
+    padding: 10px;
+    border: 1.5px solid var(--dust-gray);
+    border-radius: 20px;
+    width: 40vw;
+    height: 25vh;
+    display: grid;
+}
+
+.order-title {
+    font-weight: bold;
+    font-size: 22px;
+    margin: 10px 0 0 10px;
+}
+
+.order-text {
+    font-size: 20px;
+}
+
+.payment-type {
+    margin-top: 15%;
+    display: block;
+    text-align: center;
+}
+
+.order-prices {
+    display: grid;
+}
+
+.order-address {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}

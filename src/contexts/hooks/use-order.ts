@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import type { CreateOrderRequest, OrderResponse, SimpleOrderResponse } from "@/commons/order";
 import OrderService from "@/services/order-service";
 
@@ -24,10 +23,8 @@ function useOrders() {
     return orders;
 }
 
-function useOrder() {
+function useOrder(id: number) {
     const [order, setOrder] = useState<OrderResponse>(null!);
-    const { id } = useParams();
-    const idOrder: number = Number(id);
     useEffect(() => {
         async function loadOrderById(id: number) {
             try {
@@ -40,7 +37,7 @@ function useOrder() {
                 console.error("Erro ao achar pedido por id ", error);
             }
         }
-        loadOrderById(idOrder);
+        loadOrderById(id);
     }, [id])
 
     return order;

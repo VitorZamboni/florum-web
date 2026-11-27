@@ -2,6 +2,8 @@ import type { OrderStatus } from '@/commons/order';
 import './style.css';
 import '@/components/layout/style.css';
 import UseOrder from "@/contexts/hooks/use-order";
+import { useState } from 'react';
+import { ModalOrder } from '@/components/modal-order';
 
 interface StatusPt {
     class: string;
@@ -27,6 +29,11 @@ function statusSpecs(pedidoStatus: OrderStatus): StatusPt {
 
 export function Orders() {
     const orders = UseOrder.useOrders();
+    const [open, setOpen] = useState<number | null>(null);
+
+    const handleButtonClick = (orderId: number) => {
+        setOpen((open) => (open === orderId ? null : orderId));
+    };
 
     return (
         <div className="container">
@@ -43,6 +50,7 @@ export function Orders() {
             <div className="orders-list">
                 {orders.map(order => {
                     const status = statusSpecs(order.status);
+                    const isOpen = order.id === open;
 
                     return (
                         <div key={order.id} className="order-card">
@@ -54,7 +62,6 @@ export function Orders() {
                                 <div className="infos">
                                     <div>
                                         <span className="order-id"> Código do pedido: #{order.id}</span>
-
                                     </div>
                                     <div>
                                         <span className="order-purchased">Pedido realizado em: {new Date(order.purchasedOn).toLocaleDateString()}</span>
@@ -62,10 +69,11 @@ export function Orders() {
                                     </div>
                                     <div>
                                         <span className="order-total">Total: R$ {Number(order.total).toFixed(2)}</span>
-
                                     </div>
+                                    <button className="order-see-more" onClick={() => handleButtonClick(order.id)}>{isOpen ? "Ver menos" : "Ver mais"}</button>
                                 </div>
                             </div>
+                            <ModalOrder isOpen={isOpen} orderId={order.id} />
                         </div>
                     )
                 }

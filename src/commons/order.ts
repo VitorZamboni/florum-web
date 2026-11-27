@@ -14,7 +14,7 @@ export interface OrderResponse {
     shipping: number;
     address: Address;
     orderStatus: OrderStatus;
-    paymentType: PaymentType;
+    paymentTypeEnum: PaymentType;
     orderItems: OrderItemsResponse[];
 }
 
