@@ -5,7 +5,7 @@ import '@/components/layout/style.css'
 import useCategory from './use-category';
 import { useSearchParams } from 'react-router-dom';
 
-export default function Products() {
+export function ProductsPage() {
     const categories = useCategory();
     const { products, totalPages, page, loading } = useProducts();
 

@@ -27,7 +27,7 @@ function statusSpecs(pedidoStatus: OrderStatus): StatusPt {
     }
 };
 
-export function Orders() {
+export function OrdersPage() {
     const orders = useOrders();
     const [open, setOpen] = useState<number | null>(null);
 

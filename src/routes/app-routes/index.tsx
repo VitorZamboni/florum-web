@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import { HomePage } from "@/pages/home";
 import { Layout } from "@/components/layout";
-import { SignupPage } from "@/pages/sigup";
+import { SignupPage } from "@/pages/signup";
 import { LoginPage } from "@/pages/login";
-import { Orders } from "@/pages/orders";
+import { OrdersPage } from "@/pages/orders";
 import { RequireAuth } from "@/components/require-auth";
-import { Product } from "@/pages/product";
-import Products from "@/pages/products";
-import { Cart } from "@/pages/cart";
+import { ProductPage } from "@/pages/product";
+import { ProductsPage } from "@/pages/products";
+import { CartPage } from "@/pages/cart";
 import { CheckoutPage } from "@/pages/checkout";
 import { NotFoundPage } from "@/pages/not-found";
 
@@ -20,12 +20,12 @@ export function AppRoutes() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/product/:id" element={<Product />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/cart" element={<CartPage />} />
         {/* protected routes */}
         <Route element={<RequireAuth />}>
-          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders" element={<OrdersPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
         </Route>
         {/* not found */}

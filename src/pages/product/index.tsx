@@ -7,7 +7,7 @@ import Carousel from "@/components/carousel"
 import { useCarousel } from "@/components/carousel/use-carousel";
 import { FREE_SHIPPING_THRESHOLD, getFinalPrice, hasFreeShipping } from '@/utils/price';
 
-export function Product() {
+export function ProductPage() {
     const { product, selectedImage, handleImageClick, handleAddToCart } = useProduct();
     const isPromotion:boolean = Number(product?.discount) > 0;
     const products = useCarousel({ promotion: false, categoryIds: [] });

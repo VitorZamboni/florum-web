@@ -7,7 +7,7 @@ import '@/components/layout/style.css'
 import { useCartPage } from "./use-cart-page";
 import { hasFreeShipping } from "@/utils/price";
 
-export function Cart() {
+export function CartPage() {
     const { cart, productsCartCount, productTotal, discount, total } = useContext(CartContext);
     const { products, handleKeepBuying, handleCompletePurchase, handleClearCart } = useCartPage();
     const title = "Você também vai gostar";
