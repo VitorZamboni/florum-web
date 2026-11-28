@@ -18,7 +18,7 @@ export function ProductCard({product} : ProductCardProps){
     const navigate = useNavigate();
 
     return(
-        <div className="product" onClick={() => navigate(`/product/${product.id}`)}>
+        <div className="product clickable" onClick={() => navigate(`/product/${product.id}`)}>
             <div className="image">
                 <img src={product.mainImageUrl} alt={product.name} />
                 {

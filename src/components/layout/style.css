@@ -12,7 +12,7 @@
 
   --font-primaria: "Mulish", sans-serif;
   --font-logo: "Arima", system-ui;
-  
+
   font-family: var(--font-primaria);
   background: var(--dust-gray);
   color: var(--iron-gray);
@@ -81,24 +81,28 @@
   margin-bottom: 20px;
 }
 
-.footerMenu-app{
-    display: none;
+.footerMenu-app {
+  display: none;
 }
 
 .footer-app {
-    display: block;
+  display: block;
+}
+
+.clickable{
+  cursor: pointer;
 }
 
 
 @media only screen and (max-width: 700px) {
-    .footer-app {
-        display: none;
-    }
+  .footer-app {
+    display: none;
+  }
 
-    .footerMenu-app{
-        display: block;
-        margin-top: 80px;
-    }
+  .footerMenu-app {
+    display: block;
+    margin-top: 80px;
+  }
 }
 
 @media only screen and (max-width: 700px) {
