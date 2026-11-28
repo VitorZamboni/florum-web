@@ -60,24 +60,24 @@ export function OrdersPage() {
                                     <span className={`order-status ${status.class}`}>{status.name}</span>
                                 </div>
                                 <div className="infos">
-                                    <div>
+                                    <div className='div-id'>
                                         <span className="order-id"> Código do pedido: #{order.id}</span>
                                     </div>
-                                    <div>
+                                    <div className='div-purchased'>
                                         <span className="order-purchased">Pedido realizado em: {new Date(order.purchasedOn).toLocaleDateString()}</span>
 
                                     </div>
-                                    <div>
+                                    <div className='div-total'>
                                         <span className="order-total">Total: R$ {Number(order.total).toFixed(2)}</span>
                                     </div>
                                     <button className="order-see-more" onClick={() => handleButtonClick(order.id)}>{isOpen ? "Ver menos" : "Ver mais"}</button>
                                 </div>
                             </div>
-                            <ModalOrder isOpen={isOpen} orderId={order.id} />
+                            {isOpen && (<ModalOrder isOpen={isOpen} orderId={open} />)}
                         </div>
                     )
+                })
                 }
-                )}
             </div>
         </div>
     );

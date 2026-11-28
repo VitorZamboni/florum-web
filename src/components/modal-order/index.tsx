@@ -25,6 +25,11 @@ export function ModalOrder({ isOpen, orderId }: ModalOrderProps) {
     const order = useOrder(orderId);
     console.log(order);
 
+    if (!order) {
+        return <div>Carregando pedido...</div>;
+    }
+
+
     if (isOpen) {
         return (
             <div className="order-modal">

@@ -9,13 +9,13 @@ interface ProductOrderProps {
 export function ProductOrder({ item }: ProductOrderProps) {
 
     return (
-        <div className="product-order" onClick={() => window.location.href = `/product/${item.id}`}>
-            <div className="image-order">
+        <div className="product-order">
+            <div className="image-order clickable" onClick={() => window.location.href = `/product/${item.id}`}>
                 <img src={item.product.mainImageUrl} alt={item.product.name} />
             </div>
 
             <div className='infos-order'>
-                <span className='name'>{item.product.name}</span>
+                <span className='name clickable' onClick={() => window.location.href = `/product/${item.id}`}>{item.product.name}</span>
                 <div className='infos-product-order'>
                     <span className='product-order-title'>Quantidade: </span>
                     <span>{item.quantity}</span>
@@ -25,7 +25,7 @@ export function ProductOrder({ item }: ProductOrderProps) {
                     <span>R$ {item.price}</span>
                 </div>
                 <div className='infos-product-order'>
-                    <span className='product-order-title'>Preço total do produto: </span>
+                    <span className='product-order-title'>Preço total: </span>
                     <span>R$ {item.price * item.quantity}</span>
                 </div>
             </div>
