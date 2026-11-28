@@ -47,53 +47,63 @@ export function ModalOrder({ isOpen, orderId }: ModalOrderProps) {
                             <span className="order-text payment-type">{paymentType(order.paymentTypeEnum) ?? ""}</span>
                         </div>
                         <div className="order-prices">
-                            <span>
-                                <span className="order-title">Cupon: </span>
-                                <span className="order-text">{order.couponCode}</span>
-                            </span>
-                            <span>
-                                <span className="order-title">Desconto: </span>
-                                <span className="order-text">R$ {order.discount}</span>
-                            </span>
+                            {order.couponCode && (
+                                <span>
+                                    <span className="order-title">Cupon: </span>
+                                    <span className="order-text">{order.couponCode}</span>
+                                </span>
+                            )}
+                            {order.discount != 0 && (
+                                <span>
+                                    <span className="order-title">Desconto: </span>
+                                    <span className="order-text">R$ {order.discount}</span>
+                                </span>
+
+                            )}
                             <span>
                                 <span className="order-title">Frete: </span>
-                                <span className="order-text">R$ {order.shipping}</span>
+                                <span className="order-text">{order.shipping > 0 ? `R$ ${order.shipping}` : "Grátis"}</span>
                             </span>
                         </div>
                     </div>
                     <div className="order-address">
-                        <span>
-                            <span className="order-title">CEP: </span>
-                            <span className="order-text">{order.address.cep}</span>
-                        </span>
-                        <span>
-                            <span className="order-title">Rua: </span>
-                            <span className="order-text">{order.address.street}</span>
-                        </span>
-                        <span>
-                            <span className="order-title">Número: </span>
-                            <span className="order-text">{order.address.number}</span>
-                        </span>
-                        <span>
-                            <span className="order-title">Bairro: </span>
-                            <span className="order-text">{order.address.district}</span>
-                        </span>
-                        <span>
-                            <span className="order-title">Cidade: </span>
-                            <span className="order-text">{order.address.city}</span>
-                        </span>
-                        <span>
-                            <span className="order-title">Estado: </span>
-                            <span className="order-text">{order.address.state}</span>
-                        </span>
-                        <span>
-                            <span className="order-title">País: </span>
-                            <span className="order-text">{order.address.country}</span>
-                        </span>
-                        <span>
-                            <span className="order-title">Complemento: </span>
-                            <span className="order-text">{order.address.complement}</span>
-                        </span>
+                        <span className="order-title">Endereço de entrega: </span>
+                        <div className="address">
+                            <span>
+                                <span className="order-title">CEP: </span>
+                                <span className="order-text">{order.address.cep}</span>
+                            </span>
+                            <span>
+                                <span className="order-title">Rua: </span>
+                                <span className="order-text">{order.address.street}</span>
+                            </span>
+                            <span>
+                                <span className="order-title">Número: </span>
+                                <span className="order-text">{order.address.number}</span>
+                            </span>
+                            <span>
+                                <span className="order-title">Bairro: </span>
+                                <span className="order-text">{order.address.district}</span>
+                            </span>
+                            <span>
+                                <span className="order-title">Cidade: </span>
+                                <span className="order-text">{order.address.city}</span>
+                            </span>
+                            <span>
+                                <span className="order-title">Estado: </span>
+                                <span className="order-text">{order.address.state}</span>
+                            </span>
+                            <span>
+                                <span className="order-title">País: </span>
+                                <span className="order-text">{order.address.country}</span>
+                            </span>
+                            {order.address.complement && (
+                                <span>
+                                    <span className="order-title">Complemento: </span>
+                                    <span className="order-text">{order.address.complement}</span>
+                                </span>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
