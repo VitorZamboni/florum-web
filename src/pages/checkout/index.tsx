@@ -134,7 +134,7 @@ export function CheckoutPage() {
                 <div className="checkout-coupon">
                     {coupon ? (
                         <div className="checkout-line">
-                            <span>Cupom <strong>{coupon.code}</strong></span>
+                            <span className="input-coupon">Cupom <strong>{coupon.code}</strong></span>
                             <button className="checkout-link-button" onClick={handleRemoveCoupon}>Remover</button>
                         </div>
                     ) : (
@@ -144,6 +144,7 @@ export function CheckoutPage() {
                                 placeholder="Código de desconto"
                                 value={couponInput}
                                 onChange={(e) => setCouponInput(e.target.value)}
+                                className="input-coupon"
                             />
                             <button className="button" onClick={handleApplyCoupon}>Aplicar</button>
                         </>
